@@ -1,0 +1,140 @@
+<?php
+/**
+ * @file
+ * Install, update, and uninstall functions for affiliate
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function affiliate_schema() {
+    $schema = array();
+
+    $schema['affiliate'] = array(
+        'description' => 'affiliate Table',
+        'fields' => array(
+            'id' => array(
+                'description' => 'Primary Key id',
+                'type' => 'serial',
+                'not null' => TRUE,
+            ),
+             'affiliate_name' => array(
+                 'description' => 'affiliate name',
+                  'type' => 'varchar',
+                  'length' => '255',
+                 'not null' => TRUE,
+                  'default' => '',
+             ),
+
+            'affiliate_email' => array(
+                'description' => 'affiliate email',
+                 'type' => 'varchar',
+                 'length' => '255',
+                'not null' => TRUE,
+                 'default' => '',
+            ),
+            'affiliate_date' => array(
+                'description' => 'affiliate date',
+                 'type' => 'varchar',
+                'length' => '255',
+                'not null' => TRUE,
+                 'default' => '',
+            ),
+            'product_affiliate_code' => array(
+                'description' => 'product affiliate code',
+                 'type' => 'varchar',
+                'length' => '255',
+                'not null' => TRUE,
+                 'default' => '',
+            ),
+            'seo_affiliate_code' => array(
+                'description' => 'seo affiliate code',
+                 'type' => 'varchar',
+                'length' => '255',
+                 'not null' => TRUE,
+                  'default' => '',
+            ),
+
+            'service_affiliate_code' => array(
+                'description' => 'service affiliate code',
+                 'type' => 'varchar',
+                'length' => '255',
+                 'not null' => TRUE,
+                  'default' => '',
+            ),
+            'status' => array(
+                'description' => 'status',
+                 'type' => 'int',
+                'length' => '11',
+                 'default' => 0,
+            ),
+
+
+
+        ),
+        'primary key' => array('id'),
+
+    );
+
+    $schema['affiliate_hit_details'] = array(
+            'description' => 'Affiliate Hit Details  Table',
+            'fields' => array(
+                'affiliate_hit_id' => array(
+                    'description' => 'Primary Key affiliate hit id',
+                    'type' => 'serial',
+                    'not null' => TRUE,
+                ),
+                 'affiliate_id' => array(
+                     'description' => 'affiliate id',
+                      'type' => 'int',
+                      'length' => '11',
+                     'not null' => TRUE,
+                      'default' => 0,
+                 ),
+                 'affiliate_hit_time' => array(
+                     'description' => 'affiliate hit time',
+                      'type' => 'int',
+                      'length' => '11',
+                     'not null' => TRUE,
+                      'default' => 0,
+                 ),
+
+            'affiliate_hit_type' => array(
+                'description' => 'affiliate hit type',
+                 'type' => 'varchar',
+                'length' => '255',
+                 'not null' => TRUE,
+                  'default' => '',
+            ),
+
+            'affiliate_hit_ip' => array(
+                'description' => 'affiliate hit ip',
+                 'type' => 'varchar',
+                'length' => '255',
+                 'not null' => TRUE,
+                  'default' => '',
+            ),
+
+
+                'product_feature' => array(
+                    'description' => 'product feature',
+                     'type' => 'text',
+                    'not null' => FALSE,
+
+                ),
+                  'affiliate_hit_status' => array(
+                      'description' => 'affiliate hit status',
+                       'type' => 'int',
+                       'length' => '11',
+                      'not null' => TRUE,
+                       'default' => 0,
+                  ),
+
+            ),
+            'primary key' => array('id'),
+
+        );
+
+
+    return $schema;
+}

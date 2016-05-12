@@ -1,0 +1,1447 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: debasis
+ * Date: 16/6/15
+ * Time: 12:04 AM
+ */
+
+header('Content-type: text/html');
+header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+header("Access-Control-Allow-Credentials: true");
+header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+header('Access-Control-Max-Age: 1000');
+header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+
+function product_init() // init function called by defaulted when this module loaded by system
+{
+
+    //echo $GLOBALS['theme'];
+    //echo 5656;
+    //echo user_authenticate('debasis','Pp@ss1234');
+
+//echo "kl";
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+
+
+}
+
+function product_menu()
+{
+    $items = array();
+
+    $items['addproduct'] = array(
+        'title' => 'Add product',
+        'page callback' => 'addproduct',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+    $items['productlist'] = array(
+        'title' => 'product List',
+        'page callback' => 'productlist',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+   $items['productupdatestatus'] = array(
+        'title' => 'status Change',
+        'page callback' => 'productupdatestatus',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+   $items['deleteproduct'] = array(
+        'title' => 'Product Delete',
+        'page callback' => 'deleteproduct',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+   $items['productdetails'] = array(
+        'title' => 'product details',
+        'page callback' => 'productdetails',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+    $items['productupdates'] = array(
+        'title' => 'product Updates',
+        'page callback' => 'productupdates',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+
+
+    $items['productlogin'] = array(
+        'title' => 'Login',
+        'page callback' => 'productlogin',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+    $items['uploadproductimage'] = array(
+        'title' => 'Upload Product Image',
+        'page callback' => 'uploadproductimage',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+    $items['uploadproducticon'] = array(
+        'title' => 'Upload Product Icon',
+        'page callback' => 'uploadproducticon',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+
+$items['productname']=array(
+      'title'=>'product name',
+      'page callback'=>'productname',
+      'access callback'=>TRUE,
+      'access arguments'=>array('Anonymous Actions.'),
+      'expanded' => TRUE,
+    );
+    $items['productnamelist']=array(
+        'title'=>'product name list',
+        'page callback'=>'productnamelist',
+        'access callback'=>TRUE,
+        'access arguments'=>array('Anonymous Actions.'),
+        'expanded' => TRUE,
+    );
+
+
+    $items['addcontract']=array(
+        'title'=>'Add Contract',
+        'page callback'=>'addcontract',
+        'access callback'=>TRUE,
+        'access arguments'=>array('Anonymous Actions.'),
+        'expanded' => TRUE,
+    );
+    $items['getproductcontract']=array(
+        'title'=>'Get Contract',
+        'page callback'=>'getproductcontract',
+        'access callback'=>TRUE,
+        'access arguments'=>array('Anonymous Actions.'),
+        'expanded' => TRUE,
+    );
+    $items['productcontracupdate']=array(
+        'title'=>'Update Contract',
+        'page callback'=>'productcontracupdate',
+        'access callback'=>TRUE,
+        'access arguments'=>array('Anonymous Actions.'),
+        'expanded' => TRUE,
+    );
+
+    $items['addcontentcontract']=array(
+        'title'=>'Add Content Contract',
+        'page callback'=>'addcontentcontract',
+        'access callback'=>TRUE,
+        'access arguments'=>array('Anonymous Actions.'),
+        'expanded' => TRUE,
+    );
+    $items['orderdetails']=array(
+        'title'=>'Order Details',
+        'page callback'=>'orderdetails',
+        'access callback'=>TRUE,
+        'access arguments'=>array('Anonymous Actions.'),
+        'expanded' => TRUE,
+    );
+    $items['addorder']=array(
+        'title'=>'Add Order',
+        'page callback'=>'addorder',
+        'access callback'=>TRUE,
+        'access arguments'=>array('Anonymous Actions.'),
+        'expanded' => TRUE,
+    );
+    $items['orderlist']=array(
+        'title'=>'Order List',
+        'page callback'=>'orderlist',
+        'access callback'=>TRUE,
+        'access arguments'=>array('Anonymous Actions.'),
+        'expanded' => TRUE,
+    );
+    $items['orderdetailscontract']=array(
+        'title'=>'Order Contract details',
+        'page callback'=>'orderdetailscontract',
+        'access callback'=>TRUE,
+        'access arguments'=>array('Anonymous Actions.'),
+        'expanded' => TRUE,
+    );
+
+
+       return $items;
+}
+function uploadproductimage(){
+
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+    set_time_limit(0);
+
+    $target_dir = realpath(dirname(__FILE__))."/uploads/";
+    $path_parts = pathinfo($_FILES['Filedata']['name']);
+    $filename = rand().'_'.time().'.'.$path_parts['extension'];
+
+    $profile_url = '';
+    $extarray=array('jpg','png','gif');
+    if(in_array($path_parts['extension'],$extarray)) {
+        if (move_uploaded_file($_FILES["Filedata"]["tmp_name"], $target_dir . $filename)) {
+            //$account = user_load($_POST['userid']);
+
+            $filepath = ($target_dir . $filename);
+
+            $file = (object)array(
+                'uid' => 1,
+                'uri' => $filepath,
+                'filemime' => file_get_mimetype($filepath),
+                'status' => 1,
+            );
+            if ($file) {
+// Move the file, into the Drupal file system
+                if ($file = file_move($file, 'public://')) {
+                    $file->status = FILE_STATUS_PERMANENT;
+                    // $file->file_display = 1;
+                    $file = file_save($file);
+                    //set the extra values needed to make node_save work
+                    $file->display = 1;
+                    $file->description = "";
+                }
+
+            }
+        }
+
+        $data['image_url'] = image_style_url('thumbnail', (@$file->uri));
+        $data['image_name'] = (@$file->uri);
+        // $data['status'] = 'success';
+    }
+    else{
+        $data['status']='error';
+    }
+    echo json_encode(@$data) ;
+}
+
+function uploadproducticon(){
+
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+    set_time_limit(0);
+
+    $target_dir = realpath(dirname(__FILE__))."/uploads/";
+    $path_parts = pathinfo($_FILES['Filedata']['name']);
+    $filename = rand().'_'.time().'.'.$path_parts['extension'];
+
+    $profile_url = '';
+    $extarray=array('jpg','png','gif');
+    if(in_array($path_parts['extension'],$extarray)) {
+        if (move_uploaded_file($_FILES["Filedata"]["tmp_name"], $target_dir . $filename)) {
+            //$account = user_load($_POST['userid']);
+
+            $filepath = ($target_dir . $filename);
+
+            $file = (object)array(
+                'uid' => 1,
+                'uri' => $filepath,
+                'filemime' => file_get_mimetype($filepath),
+                'status' => 1,
+            );
+            if ($file) {
+// Move the file, into the Drupal file system
+                if ($file = file_move($file, 'public://')) {
+                    $file->status = FILE_STATUS_PERMANENT;
+                    // $file->file_display = 1;
+                    $file = file_save($file);
+                    //set the extra values needed to make node_save work
+                    $file->display = 1;
+                    $file->description = "";
+                }
+
+            }
+        }
+
+        $data['icon_url'] = image_style_url('thumbnail', (@$file->uri));
+        $data['icon_name'] = (@$file->uri);
+        // $data['status'] = 'success';
+    }
+    else{
+        $data['status']='error';
+    }
+    echo json_encode(@$data) ;
+}
+
+function productdetails(){
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+    $userlist = array();
+    $queryu = db_select('product', 'p');
+    $queryu->join('category','ca','ca.id=p.category_id');
+    $queryu->fields('p');
+    $queryu->fields('ca',array('category_name'));
+    $queryu->condition('p.category_id', $_POST['category_id'], '=');
+    $queryu->condition('p.id', $_POST['id'], '=');
+    $resultu = $queryu->execute();
+    if ($resultu->rowCount() > 0) {
+
+        while ($recordu = $resultu->fetchAssoc()){
+            $temparray= $recordu;
+            /*============== For category1 only===========*/
+            if($_POST['category_id']==1) {
+                $temparray['image_url'] = image_style_url('thumbnail', @$recordu['product_image']);
+
+                $temparray['font_image_url'] = image_style_url('productfont', @$recordu['product_image']);
+                $temparray['icon_url'] = image_style_url('producticon', @$recordu['product_icon']);
+
+                $temparray['product_feature'] = array();
+                $query = db_select('product_feature', 'pf')
+                    ->fields('pf')
+                    ->condition('product_id', $recordu['id'], '=');
+                $res = $query->execute();
+                if ($res->rowCount() > 0){
+                    $re = array();
+                    while ($res1 = $res->fetchAssoc()) {
+                        $temparray['product_feature'][] = $res1['product_feature'];
+
+                    }
+                }
+            }
+
+            /* ============For category2 only============= */
+                if($_POST['category_id']==2){
+                    $temparray['image_url'] = image_style_url('thumbnail', @$recordu['product_image']);
+                    $temparray['image_icon'] = image_style_url('thumbnail', @$recordu['product_icon']);
+                    $temparray['font_image_url'] = image_style_url('product_design_image', @$recordu['product_image']);
+                    $temparray['icon_url'] = image_style_url('producticon', @$recordu['product_icon']);
+                    $pagerangearray=explode('-',@$recordu['page_range']);
+                    $temparray['page_range_start']=$pagerangearray[0];
+                    $temparray['page_range_end']=$pagerangearray[1];
+                    if($recordu['platform_id']!=''){
+                        $platfomrmid=explode(',',$recordu['platform_id']);
+                        $temparray['platform_id']=$platfomrmid;
+                    }
+                }
+            /* ============For category3 only============= */
+            if($_POST['category_id']==3) {
+                $temparray['product_package'] = array();
+                $querypackage = db_select('product_package', 'pp')
+                    ->fields('pp')
+                    ->condition('pp.product_id', $recordu['id'], '=')
+                    ->condition('pp.status', 0, '=');
+                $respakcage = $querypackage->execute();
+                if ($respakcage->rowCount() > 0){
+
+                    while ($resrespakcage1 = $respakcage->fetchAssoc()) {
+                        $temaray1['duration']=$resrespakcage1['duration'];
+                        $temaray1['price']=$resrespakcage1['price'];
+                        $temparray['product_package'][] = $temaray1;
+                        // $temparray['product_package']['price'][] = $resrespakcage1['price'];
+
+                    }
+                }
+            }
+            /* ============For category4 only============= */
+            if($_POST['category_id']==4) {
+                $temparray['product_package_off'] = array();
+                $temparray['product_package_on'] = array();
+                $querypackage2 = db_select('product_package', 'pp')
+                    ->fields('pp')
+                    ->condition('pp.product_id', $recordu['id'], '=');
+                $db_or = db_or();
+                $db_or->condition('pp.status', 1, '=');
+                $db_or->condition('pp.status', 2, '=');
+                $queryu->condition($db_or);
+
+                $respakcage2 = $querypackage2->execute();
+                if ($respakcage2->rowCount() > 0){
+
+                    while ($resrespakcage21 = $respakcage2->fetchAssoc()) {
+                        if($resrespakcage21['status']==1) {
+                            $temarray2['duration']=$resrespakcage21['duration'];
+                            $temarray2['price']=$resrespakcage21['price'];
+                            $temparray['product_package_off'][] = $temarray2;
+                        }
+                        if($resrespakcage21['status']==2) {
+                            $temarray3['duration']=$resrespakcage21['duration'];
+                            $temarray3['price']=$resrespakcage21['price'];
+                            $temparray['product_package_on'][] = $temarray3;
+                        }
+
+
+                    }
+                }
+            }
+
+            $userlist= $temparray;
+
+
+        }
+
+    }
+//print_r($userlist);
+
+    echo json_encode(@$userlist);
+
+}
+
+function getproductcontract(){
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+    $productcontract = array();
+    $queryu = db_select('contract', 'c');
+    $queryu->fields('c');
+    $queryu->condition('c.id', 1, '=');
+    $resultu = $queryu->execute();
+    if ($resultu->rowCount() > 0) {
+
+        while ($recordu = $resultu->fetchAssoc()){
+            $temparray= $recordu;
+
+            $productcontract= $temparray;
+
+
+        }
+
+    }
+//print_r($userlist);
+
+    echo json_encode(@$productcontract);
+
+}
+
+
+function productlist()
+{
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+    //$platform_id=0;
+    $userlist = array();
+    $queryu = db_select('product', 'p');
+    $queryu->fields('p');
+    $queryu->condition('p.category_id', $_POST['category_id'], '=');
+    if(isset($_POST['frontend']) && $_POST['frontend']=='frontend'){
+        $queryu->condition('p.status', 1, '=');
+    }
+    if(isset($_POST['platform_id'])){
+        $platform_id = $_POST['platform_id'];
+    }
+    $resultu = $queryu->execute();
+    if ($resultu->rowCount() > 0) {
+        $i = 0;
+        while ($recordu = $resultu->fetchAssoc()){
+
+            $temparray =array();
+
+            if($platform_id>0 && $_POST['category_id']==2){
+
+
+
+
+                $platfromid=$recordu['platform_id'];
+
+                $platformidarray=explode(',',$platfromid);
+
+                //print_r($platformidarray);
+
+
+                if($platfromid!=''){
+                    if(count($platformidarray)>0) {
+                        if (in_array($platform_id, $platformidarray)) {
+                            $temparray = $recordu;
+
+
+                            /* For category2 only*/
+                            if($_POST['category_id']==2) {
+                                if($recordu['product_image']!='') {
+                                    $temparray['image_url'] = image_style_url('thumbnail', @$recordu['product_image']);
+                                    $temparray['font_image_url'] = image_style_url('product_design_image', @$recordu['product_image']);
+
+                                }
+
+                            }
+
+
+                            $userlist[$i]= $temparray;
+                            $i++;
+
+                        }
+                    }
+                }
+              //echo  count($temparray);
+
+            }else {
+                $temparray = $recordu;
+
+
+                /* For category1 only*/
+                if($_POST['category_id']==1){
+                    if($recordu['product_image']!='') {
+                        $temparray['image_url'] = image_style_url('thumbnail', @$recordu['product_image']);
+                        $temparray['font_image_url'] = image_style_url('productfont', @$recordu['product_image']);
+
+                    }
+                    if($recordu['product_icon']!='') {
+                        $temparray['icon_url'] = image_style_url('producticon', @$recordu['product_icon']);
+                    }
+
+
+
+                    $temparray['product_feature'] = array();
+                    $query = db_select('product_feature', 'pf')
+                        ->fields('pf')
+                        ->condition('product_id', $recordu['id'], '=');
+                    $res = $query->execute();
+                    if ($res->rowCount() > 0){
+                        $re = array();
+                        while ($res1 = $res->fetchAssoc()) {
+                            $temparray['product_feature'][] = $res1['product_feature'];
+
+                        }
+                    }
+
+
+
+                }
+                /* For category2 only*/
+                if($_POST['category_id']==2) {
+                    if($recordu['product_image']!='') {
+                        $temparray['image_url'] = image_style_url('thumbnail', @$recordu['product_image']);
+                        $temparray['font_image_url'] = image_style_url('product_design_image', @$recordu['product_image']);
+
+                    }
+
+                }
+
+                if($_POST['category_id']==3) {
+                    $temparray['product_package'] = array();
+                    $temparray['selected_product'] = array();
+                    $querypackage = db_select('product_package', 'pp')
+                        ->fields('pp')
+                        ->condition('pp.product_id', $recordu['id'], '=')
+                        ->condition('pp.status', 0, '=');
+                    $respakcage = $querypackage->execute();
+                    if ($respakcage->rowCount() > 0){
+
+                        while ($resrespakcage1 = $respakcage->fetchAssoc()) {
+                            $temaray1['duration']=$resrespakcage1['duration'];
+                            $temaray1['price']=$resrespakcage1['price'];
+                            $temaray1['id']=$resrespakcage1['id'];
+                            $temparray['product_package'][] = $temaray1;
+                            // $temparray['product_package']['price'][] = $resrespakcage1['price'];
+                            if(count($temparray['selected_product']) == 0)
+                                $temparray['selected_product'] = $temaray1;
+
+                        }
+                    }
+                }
+                if($_POST['category_id']==4) {
+                    $temparray['product_package_off'] = array();
+                    $temparray['product_package_on'] = array();
+                    $temparray['selected_product'] = array();
+                    $querypackage2 = db_select('product_package', 'pp')
+                        ->fields('pp')
+                        ->condition('pp.product_id', $recordu['id'], '=');
+                    $db_or = db_or();
+                    $db_or->condition('pp.status', 1, '=');
+                    $db_or->condition('pp.status', 2, '=');
+                    $queryu->condition($db_or);
+
+                    $respakcage2 = $querypackage2->execute();
+                    if ($respakcage2->rowCount() > 0){
+
+                        while ($resrespakcage21 = $respakcage2->fetchAssoc()) {
+                            if($resrespakcage21['status']==1) {
+                                $temarray2['duration']=$resrespakcage21['duration'];
+                                $temarray2['price']=$resrespakcage21['price'];
+                                $temarray2['id']=$resrespakcage21['id'];
+                                $temparray['product_package_off'][] = $temarray2;
+
+                                if(count($temparray['selected_product']) == 0)
+                                    $temparray['selected_product'] = $temarray2;
+
+                            }
+                            if($resrespakcage21['status']==2) {
+                                $temarray3['duration']=$resrespakcage21['duration'];
+                                $temarray3['price']=$resrespakcage21['price'];
+                                $temparray['product_package_on'][] = $temarray3;
+                            }
+
+
+                        }
+                    }
+                }
+
+
+
+
+                $userlist[$i]= $temparray;
+                $i++;
+            }
+
+
+
+    }
+
+}
+//print_r($userlist);
+
+    echo json_encode(@$userlist);
+
+
+
+}
+
+function addproduct(){
+
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+    $category_id=$_POST['category_id']['id'];
+    $product_name=$_POST['product_name'];
+    $estimated_time=$_POST['estimated_time'];
+    $product_short_name='';
+    $product_icon='';
+    $product_price=0.00;
+    $coding_only_price=0.00;
+    $transaction_charge=0.00;
+    $per_transaction=0.00;
+    $monthly_hosting=0.00;
+    $product_description=$_POST['product_description'];
+    $product_image='';
+    $product_feature_title='';
+    $page_range='';
+    $contract='';
+    $order1=0;
+    $prodnum=0;
+    $status=1;
+    $colour='';
+    $platform_id='';
+
+
+    if($category_id==1){
+
+        $product_short_name=$_POST['product_short_name'];
+        $product_price=$_POST['product_price'];
+        $transaction_charge=$_POST['transaction_charge'];
+        $per_transaction=$_POST['per_transaction'];
+        $monthly_hosting=$_POST['monthly_hosting'];
+        $product_image=$_POST['product_image'];
+        $product_icon=$_POST['product_icon'];
+        $product_feature_title=$_POST['product_feature_title'];
+        $colour=$_POST['colour'];
+
+    }
+
+
+    if($category_id==2){
+
+        $product_short_name=$_POST['product_short_name'];
+        $product_price=$_POST['product_price'];
+        $coding_only_price=$_POST['coding_only_price'];
+        $page_range=$_POST['page_range_start'].'-'.$_POST['page_range_end'];
+
+        $product_image=$_POST['product_image'];
+
+        if(isset($_POST['platform_id']) && $_POST['platform_id']!=0){
+            if(count($_POST['platform_id'])>1){
+                $platform_id=implode(',',$_POST['platform_id']);
+            }
+
+            if(count($_POST['product_id'])==1){
+                $platform_id=$_POST['product_id'];
+            }
+
+        }
+
+    }
+         $query = db_insert('product')->fields(array('category_id','product_name','product_short_name','estimated_time','product_price','coding_only_price','transaction_charge','per_transaction','monthly_hosting','product_description','product_image','product_icon','page_range','product_feature_title','contract','order1','prodnum','status','colour','platform_id'));
+         $product_id=$query->values(array(@$category_id,@$product_name,@$product_short_name,$estimated_time,@$product_price,@$coding_only_price,
+            @$transaction_charge,@$per_transaction,@$monthly_hosting,@$product_description,@$product_image,@$product_icon,@$page_range,@$product_feature_title,@$contract,@$order1,@$prodnum,$status,$colour,$platform_id));
+        $product_id= $query->execute();
+        if($product_id>0) {
+            if ($category_id == 1){
+                if (count($_POST['product_feature']) > 0) {
+                    foreach ($_POST['product_feature'] as $feature) {
+                        echo $feature;
+                        $query_feature = db_insert('product_feature')->fields(array('product_id', 'product_feature'));
+                        $query_feature->values(array($product_id, $feature));
+                        $query_feature->execute();
+                    }
+                }
+        }
+            if($category_id == 3) {
+                if (count($_POST['duration']) > 0 && count($_POST['price']) > 0) {
+                    foreach ($_POST['duration'] as $key => $duration) {
+
+                        $query_package = db_insert('product_package')->fields(array('product_id', 'duration', 'price', 'status'));
+                        $query_package->values(array($product_id, $duration, $_POST['price'][$key], 0));
+                        $query_package->execute();
+                    }
+                }
+            }
+                if($category_id == 4) {
+                if (count($_POST['duration_off_page']) > 0 && count($_POST['price_off_page']) > 0) {
+                    foreach ($_POST['duration_off_page'] as $ofkey=>$ofduration) {
+
+                        $query_ofpackage = db_insert('product_package')->fields(array('product_id', 'duration','price','status'));
+                        $query_ofpackage->values(array($product_id,$ofduration,$_POST['price_off_page'][$ofkey],1));
+                        $query_ofpackage->execute();
+                    }
+                }
+                if (count($_POST['duration_on_page']) > 0 && count($_POST['price_on_page']) > 0) {
+                    foreach ($_POST['duration_on_page'] as $onkey=>$onduration) {
+
+                        $query_ofpackage = db_insert('product_package')->fields(array('product_id', 'duration','price','status'));
+                        $query_ofpackage->values(array($product_id,$onduration,$_POST['price_on_page'][$onkey],2));
+                        $query_ofpackage->execute();
+                    }
+                }
+
+            }
+
+
+
+        }
+
+    $data['status'] = 'success';
+     echo json_encode($data);
+    return;
+}
+function productupdates(){
+
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+    $category_id=$_POST['category_id'];
+    $product_name=$_POST['product_name'];
+    $product_description=$_POST['product_description'];
+    $estimated_time=$_POST['estimated_time'];
+    $colour='';
+    $platform_id='';
+    if($category_id==1){
+        $product_price=$_POST['product_price'];
+        $product_short_name=$_POST['product_short_name'];
+        $transaction_charge=$_POST['transaction_charge'];
+        $per_transaction=$_POST['per_transaction'];
+        $monthly_hosting=$_POST['monthly_hosting'];
+        $product_image=$_POST['product_image'];
+        $product_icon=$_POST['product_icon'];
+        $product_feature_title=$_POST['product_feature_title'];
+        $colour=$_POST['colour'];
+
+                  if(count($_POST['product_feature']) > 0){
+                      $delquery=db_delete('product_feature')->condition('product_id',$_POST['id'],'=');
+                      $delid=$delquery->execute();
+                      if($delid){
+
+                          foreach ($_POST['product_feature'] as $feature){
+
+                        $query_feature = db_insert('product_feature')->fields(array('product_id', 'product_feature'));
+                        $query_feature->values(array($_POST['id'], $feature));
+                        $query_feature->execute();
+                    }
+                }
+        }
+        $query=db_update('product')
+            ->fields(array('product_name'=>@$product_name,
+                'product_short_name'=>@$product_short_name,
+                'estimated_time'=>@$estimated_time,
+                'product_description'=>@$product_description,
+                'product_price'=>@$product_price,
+                'transaction_charge'=>@$transaction_charge,
+                'per_transaction'=>@$per_transaction,
+                'product_image'=>@$product_image,
+                'product_icon'=>@$product_icon,
+                'product_feature_title'=>@$product_feature_title,
+                'colour'=>@$colour,
+            ))
+            ->condition('id',$_POST['id'],'=');
+    }
+
+
+    if($category_id==2){
+
+        $product_short_name=$_POST['product_short_name'];
+        $product_price=$_POST['product_price'];
+        $coding_only_price=$_POST['coding_only_price'];
+        $page_range=$_POST['page_range_start'].'-'.$_POST['page_range_end'];
+        $colour=$_POST['colour'];
+        $product_image=$_POST['product_image'];
+        $product_icon=$_POST['product_icon'];
+        if(isset($_POST['platform_id']) &&  count($_POST['platform_id'])>0){
+            if(count($_POST['platform_id'])>1){
+                $platform_id=implode(',',$_POST['platform_id']);
+            }
+
+            if(count($_POST['product_id'])==1){
+                $platform_id=$_POST['product_id'];
+            }
+
+           echo $platform_id;
+        }
+        $query=db_update('product')
+            ->fields(array('product_name'=>@$product_name,
+                'product_short_name'=>@$product_short_name,
+                'estimated_time'=>@$estimated_time,
+                'product_description'=>@$product_description,
+                'product_price'=>@$product_price,
+                'coding_only_price'=>@$coding_only_price,
+                'page_range'=>@$page_range,
+                'product_image'=>@$product_image,
+                'product_icon'=>@$product_icon,
+                'platform_id'=>@$platform_id,
+                'colour'=>@$colour,
+
+                ))
+            ->condition('id',$_POST['id'],'=');
+
+
+    }
+
+        if($category_id == 3) {
+            if (count($_POST['duration']) > 0 && count($_POST['price']) > 0) {
+                $delquery = db_delete('product_package')->condition('product_id', $_POST['id'], '=');
+                $delid = $delquery->execute();
+                if ($delid) {
+
+                    foreach ($_POST['duration'] as $key => $duration) {
+
+                        $query_package = db_insert('product_package')->fields(array('product_id', 'duration', 'price', 'status'));
+                        $query_package->values(array($_POST['id'], $duration, $_POST['price'][$key], 0));
+                        $query_package->execute();
+                    }
+                }
+            }
+            $query=db_update('product')
+                ->fields(array('product_name'=>@$product_name,
+                    'product_description'=>@$product_description,
+                    'estimated_time'=>@$estimated_time,
+                ))
+                ->condition('id',$_POST['id'],'=');
+
+        }
+        if($category_id == 4) {
+            if (count($_POST['duration_off_page']) > 0 && count($_POST['price_off_page']) > 0 && count($_POST['duration_on_page']) > 0 && count($_POST['price_on_page']) > 0) {
+                $delquery = db_delete('product_package')->condition('product_id', $_POST['id'], '=');
+                $delid = $delquery->execute();
+                if ($delid) {
+
+                    if (count($_POST['duration_off_page']) > 0 && count($_POST['price_off_page']) > 0) {
+                        foreach ($_POST['duration_off_page'] as $ofkey => $ofduration) {
+
+                            $query_ofpackage = db_insert('product_package')->fields(array('product_id', 'duration', 'price', 'status'));
+                            $query_ofpackage->values(array($_POST['id'], $ofduration, $_POST['price_off_page'][$ofkey], 1));
+                            $query_ofpackage->execute();
+                        }
+                    }
+                    if (count($_POST['duration_on_page']) > 0 && count($_POST['price_on_page']) > 0) {
+                        foreach ($_POST['duration_on_page'] as $onkey => $onduration) {
+
+                            $query_ofpackage = db_insert('product_package')->fields(array('product_id', 'duration', 'price', 'status'));
+                            $query_ofpackage->values(array($_POST['id'], $onduration, $_POST['price_on_page'][$onkey], 2));
+                            $query_ofpackage->execute();
+                        }
+                    }
+
+                }
+            }
+            $query=db_update('product')
+                ->fields(array('product_name'=>@$product_name,
+                    'product_description'=>@$product_description,
+                    'estimated_time'=>@$estimated_time,
+                ))
+                ->condition('id',$_POST['id'],'=');
+
+
+        }
+
+
+    $product_id= $query->execute();
+
+
+    $data['status'] = 'success';
+    echo json_encode($data);
+    return;
+}
+
+function productupdatestatus()
+{
+
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: ' . CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+    $query = db_select('product', 'p')
+        ->fields('p')
+        ->condition('p.id', $_POST['id'], '=');
+    $res = $query->execute();
+    if ($res->rowCount() > 0) {
+        while ($row = $res->fetchAssoc()) {
+
+        $status=$row['status'];
+        }
+    }
+    $status=1-intval($status);
+    $query=db_update('product')->fields(array('status'=>$status))->condition('id',$_POST['id'],'=');
+    $res=$query->execute();
+
+}
+
+function productcontracupdate(){
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: ' . CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+    if($_POST['content_type']==1){
+       $fieldname='header' ;
+       $fieldvalue=$_POST['dynamiccontent'] ;
+    }
+    if($_POST['content_type']==2){
+        $fieldname='terms_conditions' ;
+        $fieldvalue=$_POST['dynamiccontent'] ;
+    }
+    if($_POST['content_type']==3){
+        $fieldname='footer' ;
+        $fieldvalue=$_POST['dynamiccontent'] ;
+    }
+    $query=db_update('contract')->fields(array($fieldname=>$fieldvalue))->condition('id',1,'=');
+    $res=$query->execute();
+
+}
+
+function deleteproduct(){
+
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+    $query=db_select('product','p')
+        ->fields('p')
+        ->condition('p.id',$_POST['id'],'=');
+    $res=$query->execute();
+    if($res->rowCount()>0){
+        while ($row = $res->fetchAssoc()){
+            $category=$row['category_id'];
+            if($category==1){
+
+               $queryexdel=db_delete('product_feature')->condition('product_id',$_POST['id'],'=')->execute();
+            }
+            if($category==3 || $category==4 ){
+
+                $queryexdel=db_delete('product_package')->condition('product_id',$_POST['id'],'=')->execute();
+            }
+            $querydel=db_delete('product')->condition('id',$_POST['id'],'=')->execute();
+
+        }
+    }
+
+
+}
+
+
+function productname(){
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+    $query=db_select('product','p')->fields('p')->condition('p.id',$_POST['id'],'=');
+    $res=$query->execute();
+    if($res->rowCount()>0){
+        while($row=$res->fetchAssoc()){
+            $data['product_name']=$row['product_name'];
+            $data['contract']=$row['contract'];
+        }
+        echo json_encode($data);
+    }
+
+}
+function productnamelist1(){
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+
+
+    $query=db_select('product','p')->fields('p',array('id','product_name','product_short_name','product_icon','colour'))->condition('p.category_id',$_POST['id'],'=');
+    $res=$query->execute();
+
+    if($res->rowCount()>0){
+        $i = 0;
+        while($row=$res->fetchAssoc()){
+            $temparray=$row;
+
+            if($row['product_icon']!='') {
+                $temparray['icon_url'] = image_style_url('thumbnail', @$row['product_icon']);
+            }
+
+            $productlist[$i]= $temparray;
+            $i++;
+        }
+        echo json_encode($productlist);
+    }
+
+}
+
+function productnamelist(){
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+
+    $productlist =array();
+
+
+    $query=db_select('product','p')->fields('p',array('id','product_name','product_short_name','product_icon','colour','platform_id'))->condition('p.category_id',$_POST['id'],'=');
+    $res=$query->execute();
+    if(isset($_POST['platform_id'])){
+         $platform_id = $_POST['platform_id'];
+    }
+
+    if($res->rowCount()>0){
+        $i = 0;
+        while($row=$res->fetchAssoc()){
+            if($platform_id>0 && $_POST['id']==2){
+
+
+                $platfromid=$row['platform_id'];
+
+                $platformidarray=explode(',',$platfromid);
+
+                //print_r($platformidarray);
+
+
+                if($platfromid!=''){
+                    if(count($platformidarray)>0) {
+                        if (in_array($platform_id, $platformidarray)) {
+                            $temparray = $row;
+
+
+                            /* For category2 only*/
+                            if($_POST['id']==2) {
+                                if($row['product_icon']!='') {
+                                    $temparray['icon_url'] = image_style_url('thumbnail', @$row['product_icon']);
+                                }
+
+                            }
+
+
+                            $productlist[$i]= $temparray;
+                            $i++;
+
+                        }
+                    }
+                }
+                //echo  count($temparray);
+
+            }else {
+
+                $temparray = $row;
+
+                if ($_POST['id'] == 2 || $_POST['id'] == 1) {
+
+                    if ($row['product_icon'] != '') {
+                        $temparray['icon_url'] = image_style_url('thumbnail', @$row['product_icon']);
+                    }
+            }
+
+                $productlist[$i] = $temparray;
+                $i++;
+            }
+
+        }
+
+    }
+        echo json_encode($productlist);
+ }
+
+
+
+function addcontract(){
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+    $query=db_update('product')->fields(array('contract'=>$_POST['contract']))->condition('id',$_POST['id'],'=');
+    $res=$query->execute();
+}
+function orderdetails() {
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+
+    $id=intval(base64_decode(base64_decode($_POST['id'])));
+    $query=db_select('contract_content','cc')->fields('cc')->condition('cc.id',$id,'=');
+    $res=$query->execute();
+    if($res->rowCount()>0) {
+
+        while ($row = $res->fetchAssoc()) {
+            $temparray= $row;
+            $temparray['content']=unserialize($row['content']);
+           // print_r($temparray['content']);
+            $order=$temparray;
+            echo json_encode($order);
+        }
+    }
+}
+function orderdetailscontract() {
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+
+    $id=intval($_POST['id']);
+    $query=db_select('order_details','od')->fields('od')->condition('od.id',$id,'=');
+    $res=$query->execute();
+    if($res->rowCount()>0) {
+
+        while ($row = $res->fetchAssoc()) {
+            $temparray= $row;
+            $temparray['content']=unserialize($row['product']);
+            // print_r($temparray['content']);
+            $order=$temparray;
+            echo json_encode($order);
+        }
+    }
+}
+
+
+function addcontentcontract(){
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+    $content=serialize($_POST['contentdetailsarr']);
+    $aff_code='';
+    $signature='';
+    if(isset($_POST['product_affiliate_code']) && $_POST['product_affiliate_code']!=''){
+        $aff_code=$_POST['product_affiliate_code'];
+    }
+    if(isset($_POST['signature']) && $_POST['signature']!=''){
+        $signature=$_POST['signature'];
+    }
+
+
+    $query = db_insert('contract_content')->fields(array('content','is_active','client_name','client_company','email','signature','aff_code'));
+    $query=$query->values(array(@$content,0,@$_POST['client_name'],@$_POST['client_company'],@$_POST['email'],@$signature,@$aff_code));
+    $order_id= $query->execute();
+    $order_id= base64_encode(base64_encode($order_id));
+    if($order_id) {
+        $to = $_POST['email'];
+        $subject = "Contract notification from InfluxIQ";
+        $link = 'http://influx.spectrumiq.com/contract-page/' . $order_id;
+
+        /*<div style="padding: 20px 0px;width: 100%;"  >
+
+    <div style="margin-left: auto !important;margin-right: auto !important;padding-left: 10px !important;padding-right: 10px !important;max-width:600px;">
+        <div style="border-bottom: 1px solid #e1e2e2; padding-bottom: 10px; padding-top:20px">
+            <span style="color: #3d3d3d; font-size: 20px; font-weight:bold;">Greetings' . @$_POST["client_name"] . ',</span>
+            <p style="color: #3d3d3d; font-size: 14px;  line-height: 30px;  font-family: \'open_sansregular\';  text-align: left;  padding: 0; margin: 20px 0; width: auto; float: none; font-style: inherit;">Your contract for web services with InfluxIQ is now available for review and is awaiting your signature!.</p>
+            <p style="color: #3d3d3d; font-size: 14px;  line-height: 30px;  font-family: \'open_sansregular\';  text-align: left;  padding: 0; margin: 20px 0; width: auto; float: none; font-style: inherit;">Click <a href="'.$link.'">HERE</a> to access your contract. </p>
+            <p style="color: #3d3d3d; font-size: 14px;  line-height: 30px;  font-family: \'open_sansregular\';  text-align: left;  padding: 0; margin: 20px 0; width: auto; float: none; font-style: inherit;">If you have any questions, please give us a call at 801.317.1876.  </p>
+            <p style="color: #3d3d3d; font-size: 18px;  line-height: 30px;  font-family: \'open_sansregular\';  text-align: left;  padding: 0; margin: 20px 0; width: auto; float: none; font-style: inherit;font-weight:bold;">Our Portfolio</p>
+            <p style="color: #3d3d3d; font-size: 18px;  line-height: 30px;  font-family: \'open_sansregular\';  text-align: left;  padding: 0; margin: 20px 0; width: auto; float: none; font-style: inherit;">
+                <li> - Our Company : <a href="http://www.influxiq.com">http://www.influxiq.com</a></li>
+                <li> - Finders Program : <a href="http://spectrumiq.com/">http://spectrumiq.com/</a> </li>
+                <li> - Portfolio : <a href="http://toponlinedesigns.com/">http://toponlinedesigns.com/</a> </li>
+
+
+            </p>
+            <p style="color: #3d3d3d; font-size: 14px;  line-height: 30px;  font-family: \'open_sansregular\';  text-align: left;  padding: 0; margin: 20px 0; width: auto; float: none; font-style: inherit;">Thank you for your business with InfluxIQ. We look forward to working closely with you to making your vision a reality through quality-driven customer service and innovative cutting-edge technologies.</p>
+            <p style="color: #3d3d3d; font-size: 18px; font-weight:bold;">InfluxIQ - Engineering Experiences</p>
+        </div>
+
+    </div>
+</div>*/
+
+        $output='<table width="100%" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
+	<tr>
+		<td>
+			<table align="center" width="616" cellpadding="0" cellspacing="0" style="margin:0 auto;">
+				<tr>
+					<td style="padding:11px 35px 24px;">
+						<table width="100%" cellpadding="0" cellspacing="0">
+							<tr>
+								<td style="padding:0 0 15px !important; text-align:center; padding:15px 0px 0px;"><a href="#" ><img src="http://influx.spectrumiq.com/images/img-email-logo.png" border="0" style="vertical-align:top;" width="164" height="49" alt="email logo" /></a></td>
+							</tr>
+							<tr>
+								<td style="padding:0 0 12px !important; text-align:center; padding:12px 0px 0px;"><a href="#" ><img src="http://influx.spectrumiq.com/images/img-email-gradbg.png" border="0" style="vertical-align:top;" width="100%" height="10" alt="email-gradient" /></a></td>
+							</tr>
+							<tr>
+								<td style="padding:0 0 15px; font-family: \'Arial\', Helvetica, sans-serif; text-align: center; color:#1d1c1c; font-size: 24px;  font-weight: bold;">Greetings '.@$_POST["client_name"].',</td>
+							</tr>
+							<tr>
+								<td style="font-family: \'Arial\', Helvetica, sans-serif; text-align: center; color:#1d1c1c; font-size: 24px; padding:15px 0px 15px 0px;">Your contract for web services with <span style="color:#ff7d00;">InfluxIQ</span> is now available for review and is awaiting your signature! </td>
+							</tr>
+							<tr>
+								<td style="padding:5px 0 0px; text-align: center; margin: 0px auto;max-width: 165px;display: block;">
+									<table cellpadding="0" cellspacing="0">
+										<tr>
+											<td class="button-outlook" bgcolor="#1e62e7" align="center" style="color:#fff; font-family: \'Arial\', Helvetica, sans-serif; text-align:center"><a href="'.$link.'"  style="text-decoration:none; color:#fff; font-family: \'Arial\', Helvetica, sans-serif; font-size: 24px; font-weight:bold; display:block; padding:5px 16px 5px;">Click <span style="text-transform:uppercase; font-size: 24px; font-family: \'Arial\', Helvetica, sans-serif; color:#ffffff;">Here</span></a></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+                            <tr>
+								<td style="padding:0 0 12px !important; text-align:center; padding:0px 0px 0px;"><a href="#" ><img src="http://influx.spectrumiq.com/images/img-emaibody.png" border="0" style="vertical-align:top;" width="100%" height="100%" alt="emailbody" /></a></td>
+							</tr>
+
+							<tr>
+								<td style="padding:21px 0 17px; font-family: \'Arial\', Helvetica, sans-serif;  text-align: center; color:#1d1c1c; font-size:18px; font-weight:bold;">Thank you for your business with InfluxIQ. We look forward to working closely with you to making your vision a reality through quality-driven customer service and innovative cutting-edge technologies.</td>
+							</tr>
+							<tr>
+								<td class="indent-01" bgcolor="#ff7d00" style="padding:14px 25px 13px; border:1px solid #c1c1c1;">
+									<table width="100%" cellpadding="0" cellspacing="0">
+										<tr>
+											<td align="center" style="width:auto !important; font-size:30px !important; line-height:16px font-family: \'Arial\', Helvetica, sans-serif;  text-align: center; color:#ffffff; font-size:30px; font-weight:bold;"><span style="text-transform:uppercase;">InfluxIQ -</span> Engineering Experiences </td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>';
+        $headers = "From: info@spectrumiq.com\r\nReply-To: info@spectrumiq.com";
+        $headers .= 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+        $data['mail'] = @mail($to, $subject, $output, $headers);
+
+    }
+
+
+   // $language=LANGUAGE_NONE;
+  //  $d=drupal_mail('ordermail', 'order', "info@influxiq.com", $language, $params = array('email'=>@$_POST['email'],'id'=>$order_id), $from = "info@influxiq.com", $send = TRUE);
+
+
+}
+function addorder(){
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+    $product=serialize($_POST['contentdetailsarr']);
+    $signature='';
+    $aff_code='';
+    $aff_type='';
+    $aff_name='';
+
+    if(isset($_POST['signature']) && $_POST['signature']!=''){
+        $signature=$_POST['signature'];
+    }
+
+    if(isset($_POST['product_affiliate_code']) && $_POST['product_affiliate_code']!=''){
+        $aff_code=$_POST['product_affiliate_code'];
+        $queryu = db_select('affiliate', 'a');
+        $queryu->fields('a')
+            ->condition('a.product_affiliate_code', $_POST['product_affiliate_code'], '=');
+        $resultu = $queryu->execute();
+
+        while($recordu = $resultu->fetchAssoc()) {
+            $aff_name = $recordu['affiliate_name'];
+            $aff_type = 'product';
+        }
+
+
+
+    }
+ /*   if(isset($_POST['aff_type']) && $_POST['aff_type']!=''){
+        $aff_type=$_POST['aff_type'];
+    }
+    if(isset($_POST['aff_name']) && $_POST['aff_name']!=''){
+        $aff_name=$_POST['aff_name'];
+    }*/
+    if(isset($_POST['contrcatcontentid']) && $_POST['contrcatcontentid']!=''){
+        $order_id= base64_decode(base64_decode($_POST['contrcatcontentid']));
+        $query1=db_update('contract_content')->fields(array('is_active'=>1))->condition('id',$order_id,'=');
+        $res1=$query1->execute();
+
+    }
+
+
+    $query = db_insert('order_details')->fields(array('client_name','client_company','email','signature','product','price','aff_code','aff_type','aff_name','order_date','order_status'));
+    $order_id1=$query->values(array(@$_POST['client_name'],@$_POST['client_company'],@$_POST['email'],@$_POST['signature'],@$product,@$_POST['price'],@$aff_code,@$aff_type,@$aff_name,time(),1));
+    $order_id1= $query->execute();
+
+
+
+}
+function ordermail_mail ($key, &$message, $params) {
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: ' . CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+    switch ($key) {
+
+        case 'order':
+            // Set headers etc
+            $message['to'] = $params['email'];
+            $id=$params['id'];
+            $message['subject'] = t('Contract notification from InfluxIQ');
+            $message['headers']['MIME-Version'] = '1.0';
+            $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed';
+
+            $message['headers']['Content-Transfer-Encoding'] = '8Bit';
+            $message['headers']['X-Mailer'] = 'Drupal';
+
+            //$message['body'][] = t('Hello @username,', array('@username' => $params['username']));
+           // $message['body'][] = "You have a contract for products and services with InfluxIQ awaiting your signature! Please <a href=\"'.CUSTOM_URL.'contract-page/'.$id.'\">click here</a> to view and sign your contract.<br /><br />Thank you!<br /><br />The InfluxIQ Development Group team";
+            $message['body'][] = 'You have a contract for products and services with InfluxIQ awaiting your signature! Please <a href="'.CUSTOM_URL.'/contract-page/'.$id.'">click here</a> to view and sign your contract.<br /><br />Thank you!<br /><br />The InfluxIQ Development Group team';
+            break;
+    }
+}
+
+function orderlist(){
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+
+
+    $query=db_select('order_details','od')->fields('od');
+    $res=$query->execute();
+    if($res->rowCount()>0){
+        $i = 0;
+        while($row=$res->fetchAssoc()){
+            $temp1array=array();
+
+            $productListName = array();
+
+            $temparray=$row;
+
+             if($row['order_date']!='') {
+                $temparray['orderdate'] = date('Y-m-d H:i:s',$row['order_date']);
+            }
+            if($row['product']!='') {
+                $pro = unserialize(($row['product']));
+            }
+
+           // print_r($pro);
+
+        foreach($pro as $key=>$val){
+
+            if(isset($val['platformid'])){
+                $temp1array[] = $val['platformid'];
+            }
+
+
+            if(isset($val['contentid'])){
+                $temp1array[] = $val['contentid'];
+            }
+
+
+            if(isset($val['markettingid'])){
+                $temp1array[] = $val['markettingid'];
+            }
+
+
+            if(isset($val['designid'])){
+                $temp1array[] = $val['designid'];
+            }
+
+        }
+
+
+if(count($temp1array)>0){
+    $temp1arraystr=implode(',',$temp1array);
+    $query1=db_select('product','p')->fields('p',array('product_name'))
+    ->condition('id', $temp1array,'IN');
+    $re1=$query1->execute();
+    if($re1->rowCount()>0){
+        while($row2=$re1->fetchAssoc()){
+            $productListName[]=$row2['product_name'];
+        }
+
+    }
+
+}
+
+            $temparray['product_name']=$productListName;
+
+            $orderlist[$i]= $temparray;
+            $i++;
+        }
+        echo json_encode($orderlist);
+    }
+
+}

@@ -1,0 +1,61 @@
+<?php
+/**
+ * @file
+ * Install, update, and uninstall functions for contact
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function contact_schema() {
+    $schema = array();
+
+    $schema['contact'] = array(
+        'description' => 'contact Table',
+        'fields' => array(
+            'id' => array(
+                'description' => 'Primary Key id',
+                'type' => 'serial',
+                'not null' => TRUE,
+            ),
+             'fullname' => array(
+                 'description' => 'full name',
+                  'type' => 'varchar',
+                  'length' => '255',
+                 'not null' => TRUE,
+                  'default' => '',
+             ),
+             'email' => array(
+                 'description' => 'email',
+                  'type' => 'varchar',
+                  'length' => '255',
+                 'not null' => TRUE,
+                  'default' => '',
+             ),
+             'subject' => array(
+                 'description' => 'subject',
+                  'type' => 'varchar',
+                  'length' => '255',
+                 'not null' => TRUE,
+                  'default' => '',
+             ),
+             'message' => array(
+                 'description' => 'message',
+                  'type' => 'text',
+                 'not null' => FALSE,
+
+             ),
+             'contact_time' => array(
+                 'description' => 'contact time',
+                  'type' => 'varchar',
+                  'length' => '255',
+                 'not null' => TRUE,
+                  'default' => 0,
+             ),
+
+        ),
+        'primary key' => array('id'),
+
+    );
+    return $schema;
+}

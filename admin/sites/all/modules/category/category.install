@@ -1,0 +1,34 @@
+<?php
+/**
+ * @file
+ * Install, update, and uninstall functions for category
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function category_schema() {
+    $schema = array();
+
+    $schema['category'] = array(
+        'description' => 'category Table',
+        'fields' => array(
+            'id' => array(
+                'description' => 'Primary Key id',
+                'type' => 'serial',
+                'not null' => TRUE,
+            ),
+             'category_name' => array(
+                 'description' => 'category name',
+                  'type' => 'varchar',
+                  'length' => '255',
+                 'not null' => TRUE,
+                  'default' => '',
+             ),
+
+        ),
+        'primary key' => array('id'),
+
+    );
+    return $schema;
+}

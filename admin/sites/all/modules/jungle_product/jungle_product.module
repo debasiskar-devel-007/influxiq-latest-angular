@@ -1,0 +1,365 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: debasis
+ * Date: 16/6/15
+ * Time: 12:04 AM
+ */
+
+header('Content-type: text/html');
+header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+header("Access-Control-Allow-Credentials: true");
+header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+header('Access-Control-Max-Age: 1000');
+header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+
+function jungle_product_init() // init function called by defaulted when this module loaded by system
+{
+
+    //echo $GLOBALS['theme'];
+    //echo 5656;
+    //echo user_authenticate('debasis','Pp@ss1234');
+
+//echo "kl";
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+
+
+}
+
+function jungle_product_menu()
+{
+    $items = array();
+
+    $items['addjungleproduct'] = array(
+        'title' => 'Add jungleproduct',
+        'page callback' => 'addjungleproduct',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+    $items['jungleproductlist'] = array(
+        'title' => 'jungleproduct List',
+        'page callback' => 'jungleproductlist',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+    $items['parentproductlist'] = array(
+        'title' => 'parent product List',
+        'page callback' => 'parentproductlist',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+
+    $items['deletejungleproduct'] = array(
+        'title' => 'jungleproduct Delete',
+        'page callback' => 'deletejungleproduct',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+   $items['jungleproductdetails'] = array(
+        'title' => 'jungleproduct details',
+        'page callback' => 'jungleproductdetails',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+    $items['jungleproductupdates'] = array(
+        'title' => 'jungleproduct Updates',
+        'page callback' => 'jungleproductupdates',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+
+    $items['jungleproductupdatestatus'] = array(
+        'title' => 'jungleproduct Updates Status',
+        'page callback' => 'jungleproductupdatestatus',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+    $items['uploadjungleproductimage'] = array(
+        'title' => 'jungleproduct File Upload',
+        'page callback' => 'uploadjungleproductimage',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+
+
+
+    return $items;
+}
+
+function uploadjungleproductimage(){
+
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+    set_time_limit(0);
+
+    $target_dir = realpath(dirname(__FILE__))."/uploads/";
+    $path_parts = pathinfo($_FILES['Filedata']['name']);
+    $filename = rand().'_'.time().'.'.$path_parts['extension'];
+
+    $profile_url = '';
+    $extarray=array('jpg','png','gif','mp4');
+    if(in_array($path_parts['extension'],$extarray)) {
+        if (move_uploaded_file($_FILES["Filedata"]["tmp_name"], $target_dir . $filename)) {
+            //$account = user_load($_POST['userid']);
+
+            $filepath = ($target_dir . $filename);
+
+            $file = (object)array(
+                'uid' => 1,
+                'uri' => $filepath,
+                'filemime' => file_get_mimetype($filepath),
+                'status' => 1,
+            );
+            if ($file) {
+// Move the file, into the Drupal file system
+                if ($file = file_move($file, 'public://')) {
+                    $file->status = FILE_STATUS_PERMANENT;
+                    // $file->file_display = 1;
+                    $file = file_save($file);
+                    //set the extra values needed to make node_save work
+                    $file->display = 1;
+                    $file->description = "";
+                }
+
+            }
+        }
+      // echo file_create_url(@$file->uri);
+//print_r($file);
+        if($path_parts['extension']=='mp4'){
+            $data['video_url'] = file_create_url(@$file->uri);;
+        }
+        else{
+            $data['image_url'] = image_style_url('large', (@$file->uri));
+        }
+        //
+
+        $data['image_name'] = (@$file->uri);
+        // $data['status'] = 'success';
+    }
+    else{
+        $data['status']='error';
+    }
+    echo json_encode(@$data) ;
+}
+function jungleproductdetails(){
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+    $queryu = db_select('jungleproduct', 'ca');
+    $queryu->fields('ca')
+        ->condition('ca.id', $_POST['id'], '=');
+    $resultu = $queryu->execute();
+
+    while($recordu = $resultu->fetchAssoc()) {
+        $temparray=$recordu;
+        $jungleproductlist=$temparray;
+     }
+    echo json_encode(@$jungleproductlist);
+
+}
+
+
+function jungleproductlist()
+{
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+    $jungleproductlist = array();
+
+    $queryu = db_select('jungleproduct', 'ca');
+     $queryu->fields('ca');
+     $resultu = $queryu->execute();
+
+
+    if ($resultu->rowCount() > 0) {
+        $i = 0;
+        while ($recordu = $resultu->fetchAssoc()) {
+            $temparray=$recordu;
+
+                $queryu1 = db_select('jungleproduct', 'ca');
+                $queryu1->fields('ca');
+                //$queryu1->condition('ca.parent_cat', 0, '=');
+                $queryu1->condition('ca.id', $recordu['parent_cat'], '=');
+                $resultu1 = $queryu1->execute();
+                if ($resultu1->rowCount() > 0) {
+
+                    while ($recordu1 = $resultu1->fetchAssoc()) {
+
+                        $temparray['parent_cat_name']=$recordu1['cat_name'];
+                    }
+                }
+                else{
+                    $temparray['parent_cat_name']='';
+                }
+
+
+
+            $jungleproductlist[$i]= $temparray;
+            $i++;
+
+
+        }
+}
+     // $records['user']=$userlist;
+
+
+
+
+    echo json_encode(@$jungleproductlist);
+
+
+
+}
+function parentproductlist()
+{
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+    $jungleproductlist = array();
+
+    $queryu = db_select('jungleproduct', 'ca');
+    $queryu->fields('ca');
+    $queryu->condition('ca.parent_cat',0,'=');
+    $resultu = $queryu->execute();
+
+
+    if ($resultu->rowCount() > 0) {
+        $i = 0;
+        while ($recordu = $resultu->fetchAssoc()) {
+            $temparray=$recordu;
+
+            $jungleproductlist[$i]= $temparray;
+            $i++;
+
+/*            $jungleproductlist[$i]['cat_name'] = $recordu['cat_name'];
+            $jungleproductlist[$i]['id'] = $recordu['id'];
+            $jungleproductlist[$i]['parent_cat'] = $recordu['parent_cat'];
+            $jungleproductlist[$i]['status'] = $recordu['status'];
+            $i++;*/
+
+        }
+    }
+    // $records['user']=$userlist;
+
+
+
+
+    echo json_encode(@$jungleproductlist);
+
+
+
+}
+
+
+
+
+function addjungleproduct(){
+
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+    $product_file='';
+
+    $query = db_insert('jungleproduct')->fields(array('cat_name','cat_desc','parent_cat','status','priority','type'));
+        //foreach ($values as $record) {
+        $query->values(array(@$_POST['cat_name'],@$_POST['cat_desc'],@$parent_cat,1,@$_POST['priority'],@$_POST['type']));
+        //}
+        $query->execute();
+
+
+    $data['status'] = 'success';
+     echo json_encode($data);
+    return;
+}
+function jungleproductupdates(){
+
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+    db_update('jungleproduct')
+        ->fields(array('cat_name'=>@$_POST['cat_name'],'cat_desc'=>@$_POST['cat_desc'],'parent_cat'=>@$_POST['parent_cat']['id'],'type'=>@$_POST['type'],'priority'=>@$_POST['priority']))
+        ->condition('id', intval($_POST['id']))
+         ->execute();
+}
+
+
+
+function deletejungleproduct(){
+
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+    $num_deleted = db_delete('jungleproduct')
+        ->condition('id', @$_POST['id'])
+        ->execute();
+
+}
+
+function jungleproductupdatestatus(){
+
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+    $status=1-intval($_POST['status']);
+    $query=db_update('jungleproduct')
+        ->fields(array('status'=>@$status))
+        ->condition('id', intval($_POST['id']))
+        ->execute();
+
+    echo "true";
+}
+
+
+
+

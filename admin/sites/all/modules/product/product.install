@@ -1,0 +1,275 @@
+<?php
+/**
+ * @file
+ * Install, update, and uninstall functions for product
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function product_schema() {
+    $schema = array();
+
+    $schema['product'] = array(
+        'description' => 'product Table',
+        'fields' => array(
+            'id' => array(
+                'description' => 'Primary Key id',
+                'type' => 'serial',
+                'not null' => TRUE,
+            ),
+             'category_id' => array(
+                 'description' => 'category id',
+                  'type' => 'int',
+                  'length' => '11',
+                 'not null' => TRUE,
+                  'default' => 0,
+             ),
+
+            'product_name' => array(
+                'description' => 'product name',
+                 'type' => 'varchar',
+                 'length' => '255',
+                'not null' => TRUE,
+                 'default' => '',
+            ),
+            'product_short_name' => array(
+                'description' => 'product short name',
+                 'type' => 'varchar',
+                 'length' => '255',
+                'not null' => TRUE,
+                 'default' => '',
+            ),
+            'estimated_time' => array(
+                'description' => 'estimated time',
+                 'type' => 'integer',
+                 'length' => '11',
+                'not null' => TRUE,
+                 'default' => 0,
+            ),
+
+            'product_price' => array(
+                'description' => 'product price',
+                 'type' => 'float',
+                'length' => '10,2',
+                'not null' => TRUE,
+                 'default' => 0.00,
+            ),
+            'coding_only_price' => array(
+                'description' => 'coding only price',
+                 'type' => 'float',
+                'length' => '10,2',
+                'not null' => TRUE,
+                 'default' => 0.00,
+            ),
+
+            'transaction_charge' => array(
+                'description' => 'transaction charge',
+                 'type' => 'float',
+                'length' => '10,2',
+                'not null' => TRUE,
+                 'default' => 0.00,
+            ),
+            'per_transaction' => array(
+                'description' => 'per transaction',
+                 'type' => 'float',
+                'length' => '10,2',
+                'not null' => TRUE,
+                 'default' => 0.00,
+            ),
+            'monthly_hosting' => array(
+                'description' => 'monthly hosting',
+                 'type' => 'float',
+                'length' => '10,2',
+                'not null' => TRUE,
+                 'default' => 0.00,
+            ),
+
+            'product_description' => array(
+                'description' => 'product description',
+                 'type' => 'text',
+                'not null' => FALSE,
+
+            ),
+            'product_image' => array(
+                'description' => 'product image',
+                 'type' => 'text',
+                 'not null' => FALSE,
+
+            ),
+             'product_icon' => array(
+                 'description' => 'product icon',
+                  'type' => 'text',
+                  'not null' => FALSE,
+
+             ),
+
+            'product_feature_title' => array(
+                'description' => 'product feature title',
+                 'type' => 'text',
+                 'not null' => FALSE,
+
+            ),
+
+            'page_range' => array(
+                 'description' => 'page range',
+                 'type' => 'varchar',
+                 'length' => '255',
+                 'not null' => true,
+                 'default'=>''
+            ),
+            'contaract' => array(
+                'description' => 'contract',
+                'type' => 'text',
+                'not null' => FALSE,
+
+            ),
+             'order' => array(
+                 'description' => 'order',
+                 'type' => 'int',
+                 'length' => '11',
+                 'not null' => TRUE,
+                 'default' => 0,
+             ),
+             'prodnum' => array(
+                 'description' => 'prodnum',
+                 'type' => 'int',
+                 'length' => '11',
+                 'not null' => TRUE,
+                 'default' => 0,
+             ),
+             'status' => array(
+                 'description' => 'status',
+                 'type' => 'int',
+                 'length' => '11',
+                 'not null' => TRUE,
+                 'default' => 0,
+             ),
+
+            'colour' => array(
+                'description' => 'colour',
+                'type' => 'varchar',
+                'length' => '255',
+                'not null' => true,
+                'default'=>''
+            ),
+
+            'platform_id' => array(
+                'description' => 'platform id',
+                'type' => 'varchar',
+                'length' => '255',
+                'not null' => true,
+                'default'=>''
+            ),
+
+
+
+        ),
+        'primary key' => array('id'),
+
+    );
+
+
+
+ $schema['product_feature'] = array(
+         'description' => 'Product Feature  Table',
+         'fields' => array(
+             'id' => array(
+                 'description' => 'Primary Key id',
+                 'type' => 'serial',
+                 'not null' => TRUE,
+             ),
+              'product_id' => array(
+                  'description' => 'product id',
+                   'type' => 'int',
+                   'length' => '11',
+                  'not null' => TRUE,
+                   'default' => 0,
+              ),
+
+             'product_feature' => array(
+                 'description' => 'product feature',
+                  'type' => 'text',
+                 'not null' => FALSE,
+
+             ),
+         ),
+         'primary key' => array('id'),
+
+     );
+
+ $schema['product_feature'] = array(
+         'description' => 'Product Feature  Table',
+         'fields' => array(
+             'id' => array(
+                 'description' => 'Primary Key id',
+                 'type' => 'serial',
+                 'not null' => TRUE,
+             ),
+              'product_id' => array(
+                  'description' => 'product id',
+                   'type' => 'int',
+                   'length' => '11',
+                  'not null' => TRUE,
+                   'default' => 0,
+              ),
+
+             'product_feature' => array(
+                 'description' => 'product feature',
+                  'type' => 'text',
+                 'not null' => FALSE,
+
+             ),
+         ),
+         'primary key' => array('id'),
+
+     );
+
+ $schema['product_package'] = array(
+         'description' => 'Product package  Table',
+         'fields' => array(
+             'id' => array(
+                 'description' => 'Primary Key id',
+                 'type' => 'serial',
+                 'not null' => TRUE,
+             ),
+              'product_id' => array(
+                  'description' => 'product id',
+                   'type' => 'int',
+                   'length' => '11',
+                  'not null' => TRUE,
+                   'default' => 0,
+              ),
+
+             'duration' => array(
+                 'description' => 'duration',
+                  'type' => 'varchar',
+                  'length'=>'255',
+                 'not null' => TRUE,
+                  'default' => '',
+             ),
+              'price' => array(
+                  'description' => 'duration',
+                   'type' => 'float',
+                   'length'=>'10,2',
+                  'not null' => TRUE,
+                   'default' => 0.00,
+              ),
+              'status' => array(
+                  'description' => '1=>off page;2=>on page',
+                   'type' => 'int',
+                   'length' => '11',
+                  'not null' => TRUE,
+                   'default' => 0,
+              ),
+
+
+         ),
+         'primary key' => array('id'),
+
+     );
+
+
+
+    return $schema;
+}

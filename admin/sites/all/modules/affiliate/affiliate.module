@@ -1,0 +1,502 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: debasis
+ * Date: 16/6/15
+ * Time: 12:04 AM
+ */
+
+header('Content-type: text/html');
+header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+header("Access-Control-Allow-Credentials: true");
+header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+header('Access-Control-Max-Age: 1000');
+header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+
+function affiliate_init() // init function called by defaulted when this module loaded by system
+{
+
+    //echo $GLOBALS['theme'];
+    //echo 5656;
+    //echo user_authenticate('debasis','Pp@ss1234');
+
+//echo "kl";
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+
+
+}
+
+function affiliate_menu()
+{
+    $items = array();
+
+    $items['addaffiliate'] = array(
+        'title' => 'Add affiliate',
+        'page callback' => 'addaffiliate',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+    $items['affiliatelist'] = array(
+        'title' => 'affiliate List',
+        'page callback' => 'affiliatelist',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+   $items['affiliateupdatestatus'] = array(
+        'title' => 'status Change',
+        'page callback' => 'affiliateupdatestatus',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+   $items['deleteaffiliate'] = array(
+        'title' => 'affiliate Delete',
+        'page callback' => 'deleteaffiliate',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+   $items['affiliatedetails'] = array(
+        'title' => 'affiliate details',
+        'page callback' => 'affiliatedetails',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+    $items['affiliateupdates'] = array(
+        'title' => 'affiliate Updates',
+        'page callback' => 'affiliateupdates',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+    $items['addaffiliatehit'] = array(
+        'title' => 'Add  Affiliatte Hit',
+        'page callback' => 'addaffiliatehit',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+    $items['affiliatetracklist'] = array(
+        'title' => 'Affiliatte Tracking  List',
+        'page callback' => 'affiliatetracklist',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+    $items['affiliatetrackdetailslist1'] = array(
+        'title' => 'Affiliatte Tracking Details  List',
+        'page callback' => 'affiliatetrackdetailslist1',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+    $items['deleteaffiliatehit'] = array(
+        'title' => 'Affiliatte Hit  List Delete',
+        'page callback' => 'deleteaffiliatehit',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+    $items['addaffiliatefromspectrumiq'] = array(
+        'title' => 'Affiliatte Add from Spectrumiq',
+        'page callback' => 'addaffiliatefromspectrumiq',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+
+    $items['affiliatedetailsfront'] = array(
+        'title' => 'Affiliatte Details Front',
+        'page callback' => 'affiliatedetailsfront',
+        'access callback' => TRUE,
+        'access arguments' => array('Anonymous Actions.'),
+        'expanded' => TRUE,
+        //'type'=>MENU_NORMAL_ITEM,
+    );
+
+
+
+
+
+
+    return $items;
+}
+
+
+function affiliatedetails(){
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+    $queryu = db_select('affiliate', 'a');
+    $queryu->fields('a')
+        ->condition('a.id', $_POST['id'], '=');
+    $resultu = $queryu->execute();
+
+    while($recordu = $resultu->fetchAssoc()) {
+        $userlist['affiliate_name'] = $recordu['affiliate_name'];
+        $userlist['id'] = $recordu['id'];
+        $userlist['affiliate_email'] = $recordu['affiliate_email'];
+        $userlist['affiliate_date'] = $recordu['affiliate_date'];
+        $userlist['affiliate_date_formated'] =date('m/d/Y',strtotime($recordu['affiliate_date']));
+        $userlist['product_affiliate_code'] = $recordu['product_affiliate_code'];
+        //$userlist['seo_affiliate_code'] = $recordu['seo_affiliate_code'];
+       // $userlist['service_affiliate_code'] = $recordu['service_affiliate_code'];
+    }
+    echo json_encode(@$userlist);
+
+}
+
+function affiliatedetailsfront(){
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+    $queryu = db_select('affiliate', 'a');
+    $queryu->fields('a')
+        ->condition('a.product_affiliate_code', $_POST['product_affiliate_code'], '=');
+    $resultu = $queryu->execute();
+
+    while($recordu = $resultu->fetchAssoc()) {
+        $affiliatedetails['affiliate_name'] = $recordu['affiliate_name'];
+        $affiliatedetails['id'] = $recordu['id'];
+        $affiliatedetails['affiliate_email'] = $recordu['affiliate_email'];
+        $affiliatedetails['affiliate_date'] = $recordu['affiliate_date'];
+        $affiliatedetails['affiliate_date_formated'] =date('m/d/Y',strtotime($recordu['affiliate_date']));
+        $affiliatedetails['product_affiliate_code'] = $recordu['product_affiliate_code'];
+        //$userlist['seo_affiliate_code'] = $recordu['seo_affiliate_code'];
+        // $userlist['service_affiliate_code'] = $recordu['service_affiliate_code'];
+    }
+    echo json_encode(@$affiliatedetails);
+
+}
+
+function addaffiliatehit(){
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+
+    $queryu = db_select('affiliate', 'a');
+    $queryu->fields('a');
+    ///if($_POST['type']=='web-platform') {
+        $queryu->condition('a.product_affiliate_code', $_POST['code'], '=');
+   // }
+/*    if($_POST['type']=='content-writing') {
+        $queryu->condition('a.seo_affiliate_code', $_POST['code'], '=');
+    }
+    if($_POST['type']=='presence-developement') {
+        $queryu->condition('a.service_affiliate_code', $_POST['code'], '=');
+    }*/
+    $resultu = $queryu->execute();
+
+    while($recordu = $resultu->fetchAssoc()) {
+        $ip = "";
+
+        if (!empty($_SERVER["HTTP_CLIENT_IP"]))
+        {
+            //check for ip from share internet
+            $ip = $_SERVER["HTTP_CLIENT_IP"];
+        }
+        elseif (!empty($_SERVER["HTTP_X_FORWARDED_FOR"]))
+        {
+            // Check for the Proxy User
+            $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+        }
+        else
+        {
+            $ip = $_SERVER["REMOTE_ADDR"];
+        }
+        $query = db_insert('affiliate_hit_details')->fields(array('affiliate_id','affiliate_hit_time','affiliate_hit_type', 'affiliate_hit_ip', 'affiliate_hit_status'));
+        //foreach ($values as $record) {
+        $query->values(array(@$recordu['id'],time(),@$_POST['type'],$ip,1));
+        //}
+        $affiliate_hit_id=$query->execute();
+
+    }
+
+
+    $data['affiliate_hit_id'] = $affiliate_hit_id;
+    echo json_encode($data);
+    return;
+
+}
+
+
+function affiliatelist()
+{
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+    $userlist = array();
+
+    $queryu = db_select('affiliate', 'a');
+     $queryu->fields('a');
+     $resultu = $queryu->execute();
+
+
+    if ($resultu->rowCount() > 0) {
+        $i = 0;
+        while ($recordu = $resultu->fetchAssoc()) {
+             $userlist[$i]['affiliate_name'] = $recordu['affiliate_name'];
+             $userlist[$i]['id'] = $recordu['id'];
+             $userlist[$i]['affiliate_email'] = $recordu['affiliate_email'];
+             $userlist[$i]['affiliate_date'] = $recordu['affiliate_date'];
+             $userlist[$i]['product_affiliate_code'] = $recordu['product_affiliate_code'];
+             //$userlist[$i]['seo_affiliate_code'] = $recordu['seo_affiliate_code'];
+            // $userlist[$i]['service_affiliate_code'] = $recordu['service_affiliate_code'];
+            $i++;
+
+    }
+}
+    echo json_encode(@$userlist);
+}
+
+function affiliatetracklist()
+{
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+    $userlist = array();
+
+    $queryu = db_select('affiliate_hit_details', 'ahd');
+    $queryu->join('affiliate','af','af.id=ahd.affiliate_id');
+    $queryu->fields('ahd', array('affiliate_hit_id'));
+    $queryu->fields('af', array('id', 'affiliate_name'));
+    $queryu->addExpression('COUNT(ahd.affiliate_hit_id)', 'total_hit');
+    $queryu->groupBy('af.id');
+
+    $resultu = $queryu->execute();
+
+
+    if ($resultu->rowCount() > 0) {
+        $i = 0;
+        $temparray =array();
+        while ($recordu = $resultu->fetchAssoc()) {
+            $temparray =$recordu;
+
+            $affiliatetrack[$i]= $temparray;
+            $i++;
+
+        }
+    }
+    echo json_encode(@$affiliatetrack);
+}
+
+function affiliatetrackdetailslist1()
+{
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+    $userlist = array();
+
+    $queryu = db_select('affiliate_hit_details', 'ahd');
+    $queryu->fields('ahd');
+    $queryu->condition('ahd.affiliate_id',@$_POST['affiliate_id'],'=');
+
+    $resultu = $queryu->execute();
+
+
+    if ($resultu->rowCount() > 0) {
+        $i = 0;
+        $temparray =array();
+        while ($recordu = $resultu->fetchAssoc()) {
+            $temparray =$recordu;
+            $temparray['hit_time']=date('Y-m-d H:i:s',$recordu['affiliate_hit_time']);
+            $affiliatetrack[$i]= $temparray;
+            $i++;
+
+        }
+    }
+    echo json_encode(@$affiliatetrack);
+}
+
+
+function addaffiliate(){
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+    $month_arr = array('Jan'=>'01','Feb'=>'02','Mar'=>'03','Apr'=>'04','May'=>'05','Jun'=>'06','Jul'=>'07','Aug'=>'08','Sep'=>'09','Oct'=>'10','Nov'=>'11','Dec'=>'12');
+
+    $from_date = $_POST['affiliate_date'];
+    $month = substr($from_date,4,3);
+    $month = $month_arr[$month];
+
+    $date = substr($from_date,7,3);
+    $year = substr($from_date,10,5);
+    $affiliate_date = date("Y-m-d", mktime(0, 0, 0, $month, $date, $year));
+
+    $query = db_insert('affiliate')->fields(array('affiliate_name','affiliate_email','affiliate_date', 'product_affiliate_code','status'));
+        //foreach ($values as $record) {
+        $query->values(array(@$_POST['affiliate_name'],@$_POST['affiliate_email'],@$affiliate_date,@$_POST['product_affiliate_code'],1));
+        //}
+        $query->execute();
+    $data['status'] = 'success';
+     echo json_encode($data);
+    return;
+}
+
+function addaffiliatefromspectrumiq(){
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+    $affiliate_date = date("Y-m-d");
+    $affiliate_name='';
+    $affiliate_email='';
+    $product_affiliate_code='';
+    $seo_affiliate_code='';
+    $service_affiliate_code='';
+    if(isset($_POST['affiliate_name']) &&  $_POST['affiliate_name']!=''){
+        $affiliate_name=@$_POST['affiliate_name'];
+    }
+    if(isset($_POST['affiliate_email']) &&  $_POST['affiliate_email']!=''){
+        $affiliate_email=@$_POST['affiliate_email'];
+    }
+    if(isset($_POST['product_affiliate_code']) &&  $_POST['product_affiliate_code']!=''){
+        $product_affiliate_code=@$_POST['product_affiliate_code'];
+    }
+    if(isset($_POST['seo_affiliate_code']) &&  $_POST['seo_affiliate_code']!=''){
+        $seo_affiliate_code=@$_POST['seo_affiliate_code'];
+    }
+    if(isset($_POST['service_affiliate_code']) &&  $_POST['service_affiliate_code']!=''){
+        $service_affiliate_code=@$_POST['service_affiliate_code'];
+    }
+    if(isset($_POST['affiliate_email']) &&  $_POST['affiliate_email']!='') {
+        $query = db_insert('affiliate')->fields(array('affiliate_name', 'affiliate_email', 'affiliate_date', 'product_affiliate_code','status'));
+        //foreach ($values as $record) {
+        $query->values(array(@$affiliate_name, @$affiliate_email, @$affiliate_date, @$product_affiliate_code,1));
+        //}
+        $query->execute();
+        $data['status'] = 'success';
+
+    }
+    else{
+        $data['status'] = 'error';
+    }
+    echo json_encode($data);
+    return;
+}
+
+
+function affiliateupdates(){
+
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+    $month_arr = array('Jan'=>'01','Feb'=>'02','Mar'=>'03','Apr'=>'04','May'=>'05','Jun'=>'06','Jul'=>'07','Aug'=>'08','Sep'=>'09','Oct'=>'10','Nov'=>'11','Dec'=>'12');
+
+    $from_date = $_POST['affiliate_date'];
+    $month = substr($from_date,4,3);
+    $month = $month_arr[$month];
+
+    $date = substr($from_date,7,3);
+    $year = substr($from_date,10,5);
+    $affiliate_date = date("Y-m-d", mktime(0, 0, 0, $month, $date, $year));
+
+    db_update('affiliate')
+        ->fields(array('affiliate_name'=>@$_POST['affiliate_name'], 'affiliate_email'=>@$_POST['affiliate_email'],'affiliate_date'=>@$affiliate_date,'product_affiliate_code'=>@$_POST['product_affiliate_code']))
+        ->condition('id', intval($_POST['id']))
+         ->execute();
+}
+
+function affiliateupdatestatus(){
+
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+
+    //print_r($_POST);
+    $user_fields = user_load(@intval($_POST['uid']));
+    //$user_fields = user_load(62);
+    $user_fields->status=1-intval($user_fields->status);
+    user_save($user_fields);
+
+ /*   if($user_fields->status==1) drupal_mail('user', 'register_status_activated', $_POST['email'], NULL, array('account' => $user_fields), variable_get('site_mail', 'support@voortal.com'));
+    else drupal_mail('user', 'register_status_blocked', $_POST['email'], NULL, array('account' => $user_fields), variable_get('site_mail', 'support@voortal.com'));*/
+    //drupal_mail('user', 'register_status_blocked', $_POST['email'], NULL, array('account' => $user_fields), variable_get('site_mail', 'support@voortal.com'));
+    //drupal_mail('user', 'register_no_approval_required', $_POST['email'], NULL, array('account' => $user_fields), variable_get('site_mail', 'support@voortal.com'));
+    echo "true";
+}
+
+function deleteaffiliate(){
+
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+    $num_deleted = db_delete('affiliate')
+        ->condition('id', @$_POST['id'],'=')
+        ->execute();
+}
+
+function deleteaffiliatehit(){
+
+    header('Content-type: text/html');
+    header('Access-Control-Allow-Origin: '.CUSTOM_URL);  //I have also tried the * wildcard and get the same response
+    header("Access-Control-Allow-Credentials: true");
+    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+    header('Access-Control-Max-Age: 1000');
+    header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
+    $num_deleted = db_delete('affiliate_hit_details')
+        ->condition('affiliate_hit_id', @$_POST['affiliate_hit_id'],'=')
+        ->execute();
+}
+
+
+
