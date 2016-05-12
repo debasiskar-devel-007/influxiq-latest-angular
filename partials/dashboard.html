@@ -1,0 +1,116 @@
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Dashboard
+            <small></small>
+        </h1>
+        <!--<ol class="breadcrumb">
+            <li><a href="javascript:void(0)"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>-->
+    </section>
+
+
+    <!-- Main content -->
+    <section class="content">
+
+
+        <!-- Info boxes -->
+        <div class="row">
+            <a ng-show="userrole==4 || userrole==5" ui-sref="dashboard"><div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-aqua"> <img src="images/aicon1.png" alt="#" style="display:block; margin:23px auto; width:48px;"></span>
+                    <div class="info-box-content">
+
+                       <span class="info-box-number">HOME</span>
+                    </div><!-- /.info-box-content -->
+                </div><!-- /.info-box -->
+            </div>
+            </a>
+
+            <a ng-show="userrole==4" | userrole==5" ui-sref="user-list"><div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-aqua"><img src="images/aicon2.png" alt="#" style="display:block; margin:21px auto; width:48px;"></span>
+                    <div class="info-box-content">
+
+                        <span class="info-box-number">Admin Manager</span>
+                    </div><!-- /.info-box-content -->
+                </div><!-- /.info-box -->
+            </div></a>
+
+
+            <a ng-show="userrole==4 || userrole==5" ui-sref="lead-list"><div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-aqua"><img src="images/aicon3.png" alt="#" style="display:block; margin:29px auto; width:50px;"></span>
+                    <div class="info-box-content">
+
+                        <span class="info-box-number">Lead Manager</span>
+                    </div><!-- /.info-box-content -->
+                </div><!-- /.info-box -->
+            </div></a>
+
+
+
+            <a ng-show="userrole==4 || userrole==5" ui-sref="affiliate-list"><div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-aqua"><img src="images/aicon5.png" alt="#" style="display:block; margin:21px auto; width:48px;"></span>
+                    <div class="info-box-content">
+
+                        <span class="info-box-number">Affiliate Manager</span>
+                    </div><!-- /.info-box-content -->
+                </div><!-- /.info-box -->
+            </div></a>
+
+
+            <a ng-show="userrole==4 || userrole==5" ui-sref="category-list"><div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-aqua"><img src="images/iconcatmgr.png" alt="#" style="display:block; margin:24px auto; width:48px;"></span>
+                    <div class="info-box-content">
+
+                        <span class="info-box-number">Category Manager</span>
+                    </div><!-- /.info-box-content -->
+                </div><!-- /.info-box -->
+            </div></a>
+
+
+
+            <a ng-show="userrole==4 || userrole==5" ui-sref="product-list"><div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-aqua"><img src="images/iconprodmgr.png" alt="#" style="display:block; margin:27px auto; width:54px;"></span>
+                    <div class="info-box-content">
+
+                        <span class="info-box-number">Product Manager</span>
+                    </div><!-- /.info-box-content -->
+                </div><!-- /.info-box -->
+            </div></a>
+
+
+            <a ng-show="userrole==4 || userrole==5" ui-sref="order-list"><div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-aqua"><img src="images/iconordmgr.png" alt="#" style="display:block; margin:30px auto; width:48px;"></span>
+                    <div class="info-box-content">
+
+                        <span class="info-box-number">Order Manager</span>
+                    </div><!-- /.info-box-content -->
+                </div><!-- /.info-box -->
+            </div></a>
+
+            <a ng-show="userrole==4 || userrole==5" ng-click="signout()" href="javascript:void(0)"><div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-aqua"><img src="images/aicon9.png" alt="#" style="display:block; margin:24px auto; width:48px;"></span>
+                    <div class="info-box-content">
+
+                        <span class="info-box-number" >log out</span>
+                    </div><!-- /.info-box-content -->
+                </div><!-- /.info-box -->
+            </div></a>
+
+
+
+        </div>
+
+    </section><!-- /.content -->
+</div>
+

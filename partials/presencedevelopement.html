@@ -1,0 +1,621 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannercontain">
+            <img src="images/presence_development_banner.jpg">
+            <!--<h2>WEB <span>DESIGN</span></h2>
+            <div class="container">
+                <p>Maecenas vitae nunc eget quam pellentesque cursus eget et lacus. Vestibulum sollicitudin nisi nec pulvinar venenatis. Vivamus ornare, urna eget pulvinar eleifend, nibh lorem elementum mauris, in semper lectus elit ut ex.</p>
+            </div>
+            <div class="divider-inner"></div>-->
+
+        </div>
+    </div>
+</div>
+<!--
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 blockcore">
+            <h2>PRESENCE <span>DEVELOPEMENT</span></h2>
+            <div class="container">
+                <p>Maecenas vitae nunc eget quam pellentesque cursus eget et lacus. Vestibulum sollicitudin nisi nec pulvinar venenatis. Vivamus ornare, urna eget pulvinar eleifend, nibh lorem elementum mauris, in semper lectus elit ut ex.</p>
+            </div>
+            <div class="divider-inner"></div>
+
+        </div>
+    </div>
+</div>
+&lt;!&ndash;content end &ndash;&gt;
+
+
+&lt;!&ndash;bannercontain Start &ndash;&gt;
+<div class="container-fluid">	
+    	<div class="row">  
+         	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content_writing_top_devider"></div>  	
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">   
+                    <div class="content_writing_top_banner">  
+                     	<div class="content_writing_top_banner_predev">
+                            <div class="row">    
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
+                                    <div class="pd-banner">     
+                                        <div class="content_writing_bannertext">
+                                            <h4>Helping You Master</h4>
+                                            <h2>TARGET AUDIENCE</h2>
+                                            <h3>THROUGH STRATEGY PRECISION</h3>   
+                                            <p>If you do not see what you are after here please get in touch. After writing 2 million lines of code over the past 15 years we have a wealth of software to work with. </p>
+                                            <div class="divider-inner-blue"></div>              
+                                        </div>
+                                    </div> 
+                                </div>                                                                                                           
+                            </div>
+                       </div>
+                    </div>
+                </div> 
+        	</div>
+     	</div>
+-->
+</div>
+
+
+<!--<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content_writing_top_devider"></div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="content_writing_top_banner_1">
+                <div class="content_writing_bannertext">
+                    <h4>Helping You Master</h4>
+                    <h2>TARGET AUDIENCE</h2>
+                    <h3>THROUGH STRATEGY PRECISION</h3>
+                    <p>If you do not see what you are after here please get in touch. After writing 2 million lines of code over the past 15 years we have a wealth of software to work with. </p>
+                    <div class="divider-inner-blue"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+<!--strategicMarketing Start -->
+<!--<div id="strategicMarketing" class="text-center">
+    <div class="container">
+        <h1>STRATEGIC CONTENT <span>MARKETING</span></h1>
+        <div class="divider-inner"></div>
+        <p>For most of our clients Strategic Content Marketing is enough to really help create a strong Visible Presence on the web for their business. We find that 80% of small business and local marketing strategies fall well within the services offered below.</p>
+    </div>
+</div>&lt;!&ndash;strategicMarketing end &ndash;&gt;-->
+<!--PagesSection Start -->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div  class="container customengmaindiv">
+                <div class="prod-blockleft customengmainleftdiv">
+                    <img alt="#" src="images/presencedevelopment_image.jpg" class="floatRightclear">
+                    <p>Our results-driven presence development services get stunning results by way of balance between intelligent knowledge of the search engine and the conversion of the new customers. Our professionals understand business processes and are expert strategist at increasing our client’s web traffic and conversion of sales.</p>
+                    <p>Our presence development services are for clients who want to engage new customers with their products and services as well as increase their digital footprint.   </p>
+                    <p>nterested in increasing the numbers of visitors to your website and sales conversion for your products and services? Choose from one of our professional presence development services below!.</p>
+                </div>
+
+                <!--<div class="prod-blockright customengmainrightdiv">
+
+                     <div class="butdiv">
+                         <div class="butdivleft">
+                             <a href="#" class="butdivleft-right">ADD TO CONTRACT</a>
+                         </div>
+                     </div>
+                </div>-->
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="pagesection" class="graybg">
+    <div class="container">
+        <div class="row mobilesec">
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 sectionone" ng-show="productlist.length>0" ng-repeat="item in productlist">
+                <div class="singlepagesection">
+                    <div class="icon">
+                        <img src="images/icon-page-1.png">
+                    </div>
+                    <div class="iconcontent">
+                        <h3>{{item.product_name}}</h3>
+                        <hr>
+                        <div class="dropdown">
+                            <select>
+                                <option ng-repeat="item1 in item.product_package_off" ng-selected="item1.id == item.selected_product.id" ng-click="getprice22(item,item1)">{{item1.duration}}</option>
+                            </select>
+
+                            <!--
+                            <select class="dropdown-menu">
+                                <option  ng-repeat="item1 in item.product_package_off" value="{{item1.duration}}">{{item1.duration}}</option>
+
+                            </select>-->
+                         <!-- <button class="btn btn-default dropdown-toggle btn-cusdrop" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                               &lt;!&ndash; <li ng-repeat="item1 in item.product_package_off"><a href="#">Day</a></li>&ndash;&gt;
+                                <li ng-repeat="item1 in item.product_package_off"><a ng-click="getprice(item1)">{{item1.duration}}</a></li>
+                            </ul>-->
+                        </div>
+                       <!-- <h4>ONE TIME</h4>-->
+                        <h2 class="develope_price">${{item.selected_product.price}}</h2>
+                        <!--<h2>$199.00</h2>-->
+                        <a class="btn btnadd" href="javascript:void(0);" ng-click="pop_marketting(item)">Add a Contract</a>
+                    </div>
+                    <div class="iconcontentbottom">
+                        <p>All packages come with a monthly update and SEO report. Get discounts for multiple months. Discounts are listed in the drop down menu. </p>
+                    </div>
+                </div>
+            </div>
+<!--
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 sectionone">
+                <div class="singlepagesection">
+                    <div class="icon">
+                        <img src="images/icon-page-2.png">
+                    </div>
+                    <div class="iconcontent">
+                        <h3>LOCAL ADVANCED</h3>
+                        <hr>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle btn-cusdrop" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Monthly
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">Day</a></li>
+                                <li><a href="#">Yearly</a></li>
+                            </ul>
+                        </div>
+                        <h4>ONE TIME</h4>
+                        <h2>$299.00</h2>
+                        <a class="btn btnadd">Add a Contract</a>
+                    </div>
+                    <div class="iconcontentbottom">
+                        <p>All packages come with a monthly update and SEO report. Get discounts for multiple months. Discounts are listed in the drop down menu.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 sectionone">
+                <div class="singlepagesection">
+                    <div class="icon">
+                        <img src="images/icon-page-3.png">
+                    </div>
+                    <div class="iconcontent">
+                        <h3>NATIONAL ADVANCED</h3>
+                        <hr>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle btn-cusdrop" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Monthly
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">Day</a></li>
+                                <li><a href="#">Yearly</a></li>
+                            </ul>
+                        </div>
+                        <h4>ONE TIME</h4>
+                        <h2>$399.00</h2>
+                        <a class="btn btnadd">Add a Contract</a>
+                    </div>
+                    <div class="iconcontentbottom">
+                        <p>All packages come with a monthly update and SEO report. Get discounts for multiple months. Discounts are listed in the drop down menu.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 sectionone">
+                <div class="singlepagesection">
+                    <div class="icon">
+                        <img src="images/icon-page-4.png">
+                    </div>
+                    <div class="iconcontent">
+                        <h3>NATIONAL ADVANCED</h3>
+                        <hr>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle btn-cusdrop" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                Monthly
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">Day</a></li>
+                                <li><a href="#">Yearly</a></li>
+                            </ul>
+                        </div>
+                        <h4>ONE TIME</h4>
+                        <h2>$499.00</h2>
+                        <a class="btn btnadd">Add a Contract</a>
+                    </div>
+                    <div class="iconcontentbottom">
+                        <p>All packages come with a monthly update and SEO report. Get discounts for multiple months. Discounts are listed in the drop down menu.</p>
+                    </div>
+                </div>
+            </div>
+-->
+            <!--    <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                 <div class="singlepagesection sectiontwo">
+                     <div class="icon">
+                      <img src="images/icon-page-1.png">
+                     </div>
+                     <div class="iconcontent">
+                      <h3>5-7 PAGES</h3>
+                      <hr>
+                      <h4>ONE TIME</h4>
+                      <h2>$297.00</h2>
+                      <a class="btn btnadd">Add a Contract</a>
+                     </div>
+                     <div class="iconcontentbottom">
+                     <p>This covers the content needed for a basic website layout. - See more at:<br> <a href="http://influxiq.com/home/content.html#sthash.YiyGxHla.dpuf">http://influxiq.com/home/content.html#sthash.YiyGxHla.dpuf</a> </p>
+                     </div>
+                 </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                 <div class="singlepagesection sectionthree">
+                     <div class="icon">
+                      <img src="images/icon-page-1.png">
+                     </div>
+                     <div class="iconcontent">
+                      <h3>5-7 PAGES</h3>
+                      <hr>
+                      <h4>ONE TIME</h4>
+                      <h2>$297.00</h2>
+                      <a class="btn btnadd">Add a Contract</a>
+                     </div>
+                     <div class="iconcontentbottom">
+                     <p>This covers the content needed for a basic website layout. - See more at:<br> <a href="http://influxiq.com/home/content.html#sthash.YiyGxHla.dpuf">http://influxiq.com/home/content.html#sthash.YiyGxHla.dpuf</a> </p>
+                     </div>
+                 </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                 <div class="singlepagesection sectionfour">
+                     <div class="icon">
+                      <img src="images/icon-page-1.png">
+                     </div>
+                     <div class="iconcontent">
+                      <h3>5-7 PAGES</h3>
+                      <hr>
+                      <h4>ONE TIME</h4>
+                      <h2>$297.00</h2>
+                      <a class="btn btnadd">Add a Contract</a>
+                     </div>
+                     <div class="iconcontentbottom">
+                     <p>This covers the content needed for a basic website layout. - See more at:<br> <a href="http://influxiq.com/home/content.html#sthash.YiyGxHla.dpuf">http://influxiq.com/home/content.html#sthash.YiyGxHla.dpuf</a> </p>
+                     </div>
+                 </div>
+                </div>-->
+        </div>
+    </div>
+</div>
+<!--End PagesSection-->
+
+<!--contentdevelopmentservice Start -->
+<div id="contentdevelopmentserv" class="graybg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center developmentservtop">
+                    <h3>Visible Presence Developement</h3>
+                    <div class="divider-inner"></div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped"  >
+                        <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th ng-show="productlist.length>0" ng-repeat="item in productlist">{{item.product_name}}</th>
+<!--
+                            <th>LOCAL ADVANCED</th>
+                            <th>NATIONAL ADVANCED</th>
+                            <th>NATIONAL ADVANCED</th>
+-->
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Keywords Optimized</td>
+                            <td><label>2</label></td>
+                            <td><label>3</label></td>
+                            <td><label>5</label></td>
+                            <td><label>10</label></td>
+                        </tr>
+                        <tr>
+                            <td>Competition Research</td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa  fa-check-circle"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Reporting Generated Monthly</td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Search Engine Submissions</td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Directory Submission</td>
+                            <td><label>3 Posts</label></td>
+                            <td><label>5 Posts</label></td>
+                            <td><label>7 Posts</label></td>
+                            <td><label>15 Posts</label></td>
+                        </tr>
+                        <tr>
+                            <td>Article Submission [Unique content]</td>
+                            <td><label>5 Posts</label></td>
+                            <td><label>10 Posts</label></td>
+                            <td><label>15 Posts</label></td>
+                            <td><label>25 Posts</label></td>
+                        </tr>
+                        <tr>
+                            <td>Blog Posting</td>
+                            <td><label>1 Posts</label></td>
+                            <td><label>2 Posts</label></td>
+                            <td><label>4 Posts</label></td>
+                            <td><label>10 Posts</label></td>
+                        </tr>
+                        <tr>
+                            <td>Press Release Submission [Unique content]</td>
+                            <td><label>1 Posts</label></td>
+                            <td><label>3 Posts</label></td>
+                            <td><label>7 Posts</label></td>
+                            <td><label>14 Posts</label></td>
+                        </tr>
+                        <tr>
+                            <td>Social Posting Management</td>
+                            <td><label>Not Offered</label></td>
+                            <td><label>10 Posts a month</label></td>
+                            <td><label>20 Posts a month</label></td>
+                            <td><label>30 Posts a month</label></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--End contentdevelopmentservice-->
+
+<!--Website Presence Calibration Start -->
+<div id="websitepresencecalibration" class="graybg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center developmentservtop">
+                    <h3>Website Presence Calibration</h3>
+                    <div class="divider-inner"></div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th ng-show="productlist.length>0" ng-repeat="item in productlist">{{item.product_name}}</th>
+<!--
+                            <th>LOCAL STARTER</th>
+                            <th>LOCAL ADVANCED</th>
+                            <th>NATIONAL ADVANCED</th>
+                            <th>NATIONAL ADVANCED</th>
+-->
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Website Analysis</td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa  fa-check-circle"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Competitor Site Analysis</td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa  fa-check-circle"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Keywords Research & Optimization</td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Title Tag Optimization</td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Meta Description Optimization</td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa  fa-check-circle"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Images Optimization</td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa  fa-check-circle"></i></td>
+                        </tr>
+                        <tr>
+                            <td>URL Rewriting (On Systems that allows this)</td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa  fa-check-circle"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Checking site for W3C compliance</td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa  fa-check-circle"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Broken links check</td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa  fa-check-circle"></i></td>
+                        </tr>
+                        <tr>
+                            <td>HTML error check</td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa  fa-check-circle"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Content Fixing Suggestions</td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa fa-check-circle"></i></td>
+                            <td><i class="fa  fa-check-circle"></i></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--End website presence calibration-->
+
+<!--Visible Presence Development Start -->
+<div id="visiblepresencecalibration">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="visiblepresenceimg">
+                    <img src="images/img-visiblepresencedevelopmentleft.png"> </div>
+            </div>
+            <div class="col-md-5">
+                <div class="visiblepresencecontent">
+                    <h3>VISIBLE PRESENCE</h3>
+                    <h2>DEVELOPMENT</h2>
+                    <hr>
+                    <p>Getting visibility with the exact audience you are looking for takes a bit of savvy, some creativity and a bit of clever writing, but in the end it is all specific and exact science.  The World Wide Web truly is one gigantic equation whose conductors are the all so mightily algorithms you hear so much about. To put it simple it is all math. And if you understand what that means and how to work within its constructs, you can appear in front of the right person at the right time with the right information. And we all know when you do that your increased chances for making a sale sky rockets.<br><br><span>There has been a lot of terms used for Visible Presence Development and they are all outdated for a reason. SEO, Social Viral Marketing, News Syndication and the list goes on. The facts are you have to understand where your audience is and why. Once you understand that you have to use every tool within this newest method, VPD or Visible Presence Development. The biggest difference in this new theory is research and discovery. You have to uncover EXACTLY where your target audience is and then you have to create a solid strategy to create a massive attraction to your actual online presence.  Even the newer term “Inbound Marketing” and everything it promises still falls very short of VPD. It’s not what you do after but before you start your efforts that makes every little bit of difference. </span> </p>
+                </div>
+            </div>
+            <div class="col-md-3"><div class="visiblepresencedevelopmentright"><img src="images/visiblepresencedevelopmentright.jpg" class="img-responsive"></div></div>
+        </div>
+    </div>
+</div>
+
+<!--End Visible Presence Development Start -->
+
+<!--Visible Presence Development Start -->
+
+<div id="targetaudience">
+<div class="container-fluid orange-round">
+    <div class="row">
+        <div class="container">
+            <div class="col-md-5 orange-roundleft"><img alt="#" src="images/targetaudience.png"></div>
+            <div class="col-md-7 orange-roundright">
+                <p><em>Once we have reviewed fully and have appropriately looked at your target audience through the VPD methods then we can apply a number of strategies to give you the highest and best use of your spend. </em></p>
+                <p class="blacktext">WHAT WE DO WILL POSITON YOU IN FRONT OF YOUR EXACT <span>TARGET AUDIENCE</span> AND INTELLEGENTLY FILTER OUT THOSE THAT DON’T FIT.</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<!--<div id="needitcustomer">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>NEED IT CUSTOM? <span> TALK TO US!</span></h1>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<script type="text/ng-template" id="marketting.html">
+
+    <div class="confirm_delpopup"  id="marketing_confirm_delbtn">
+        <a ng-click="cancel()" class="shutter-close2 ng-scope closebtn1" href="javascript:void(0)"><img class="ab-close" src="images/popup-Close.png"> </a>
+        <div class="clearfix"></div>
+        <div class="confirm_delbtn ng-scope">
+            <div  class="modalorangebar_new" ng-hide="(platformid && contentid && designid && markettingid)">Select Your Next Service</div>
+            <div class="modalorangebar_new_bdr" ng-hide="!(platformid && contentid && designid && markettingid)"></div>
+            <div class="modal-body text-center">
+                <span>{{selectstring}}</span>
+                <span class="typeclass" ng-hide="(platformid && contentid && designid && markettingid)">{{type}}</span>
+                <div class="modal-body-inner" ng-hide="(platformid && contentid && designid && markettingid)">
+                <div class="checkbox checkclass" ng-repeat="item3 in categorylist" ng-hide="inarray1(item3.id)> -1">
+						
+                    <label class="prolabel" >
+                        <img ng-show="item3.id==2" src="images/icon-webdesign.png" alt="web design">
+                        <img ng-show="item3.id==3" src="images/icon-creativecontent.png" alt="creative content">
+                        <img ng-show="item3.id==4" src="images/icon-presencedevelopment.png" alt="presence developement">
+
+                        <input  ng-change="selectradio(item3.id)"  type="radio" value="{{item3.id}}"  name="dfgdf"  ng-model="selectedcat"
+                        > <!--validator = "platformValidator() === true"
+                                                       invalid-message = "platformValidator(form.platform_id)"-->
+                        <span style="font-size:13px;">{{item3.category_name}}</span>
+                    </label>
+
+				</div>
+
+                </div>
+
+                <div class="clearfix"></div>
+				<div class="btnmodelorange">
+                <a href="javascript:void(0);" ng-click="send774()" ng-hide="(platformid && contentid && designid && markettingid)" class="probutton">Go</a>
+                <!-- <button ng-disabled="!cat_id" ng-click="send(product)" class="probutton">Go</button>-->                
+                <a ui-sref="contract" class="probutton pull-left mtbutton">Go to Contract</a> <a href="javascript:void(0);" ng-click="unsetcart('presence-developement')" class="probutton pull-right mtbutton">Start Over</a></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+
+
+
+    </div>
+
+    </div>
+</script>
+<script type="text/ng-template" id="common.html">
+
+    <div class="confirm_delpopup" id="common_confirm_delbtn" >
+        <a ng-click="cancel()" class="shutter-close2 ng-scope closebtn1" href="javascript:void(0)"><img class="ab-close" src="images/popup-Close.png"> </a>
+        <div class="clearfix"></div>
+        <div class="confirm_delbtn ng-scope">
+            <div class="modalorangebar_new">Please select a platform first</div>
+            <div class="modal-body">
+            <img src="images/abc.jpg">
+                <div class="clearfix">&nbsp;</div>
+				<div class="btnmodelorange">
+                <a  ui-sref="web-platform" class="probutton">Go</a>
+                <!-- <button ng-disabled="!cat_id" ng-click="send(product)" class="probutton">Go</button>-->
+				</div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+
+
+
+    </div>
+
+    </div>
+</script>

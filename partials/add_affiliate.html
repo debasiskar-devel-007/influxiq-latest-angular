@@ -1,0 +1,132 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Affiliate Manager
+
+        </h1>
+        <!--<ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Forms</a></li>
+            <li class="active">General Elements</li>
+        </ol>-->
+    </section>
+
+
+
+
+
+    <section class="content">
+        <div class="row">
+
+            <!-- left column -->
+            <div class="col-md-12">
+
+                <!-- general form elements -->
+                <div class="box box-primary" style="overflow:hidden; padding-bottom:40px;">
+
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Add Affiliate</h3>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+
+                    <div class="formsection">
+                        <form role="form" angular-validator-submit="addaffiliatesubmit()" name="addaffiliateform" novalidate angular-validator>
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label >Affiliate Name</label>
+                                    <input type="text" class="form-control"  placeholder="Affiliate Name" name="affiliate_name"
+                                           ng-model="form.affiliate_name"
+                                           required-message="'Affiliate Name can not be blank.'"
+                                           required
+                                    >
+                                    <!-- <span class="errormsg">erroe msg</span>-->
+                                </div>
+                                <div class="form-group">
+                                    <label >Affiliate Email</label>
+                                    <input type="email" class="form-control" placeholder="Affiliate Email" name="affiliate_email"
+                                    ng-model="form.affiliate_email"
+                                     required-message="'Affiliate email can not be blank.'"
+                                      invalid-message="'Affiliate email not valid'"
+                                      required
+                                    >
+                                    <!-- <span class="errormsg">erroe msg</span>-->
+                                </div>
+
+
+                                <div class="form-group dateclass">
+                                    <label>Affiliation Date</label>
+                                    <input type="text" class="form-control" name="affiliate_date" placeholder="Affiliation Date"
+                                           validate-on="blur"
+
+                                           class = "form-control input-form"
+
+                                           ng-model = "form.affiliate_date"
+
+                                           uib-datepicker-popup="{{format}}"
+
+                                           is-open="opened" ng-required="true" show-weeks="false"
+
+                                           ng-focus="open1()"
+
+                                           required-message="'Date cannot be blank.'"
+
+                                           required>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Product Affiliate Code</label>
+                                    <input type="text" class="form-control" name="product_affiliate_code" placeholder="Product Affiliate Code"
+                                    ng-model="form.product_affiliate_code"
+                                           required-message= "'Product affiliate code can not be blank.'"
+                                           required>
+                                    <div class="clear" style="clear:both;">&nbsp;</div>
+                                    <input type="button" class="btn btn-primary" value="Generate" ng-click="generate_product_code()"> <input type="button" class="btn btn-primary" value="Clear" ng-click="product_code_clear()">
+
+                                </div>
+
+
+
+                           <!-- <div class="form-group">
+                                <label>Seo Affiliate Code</label>
+                                <input type="text" class="form-control" name="seo_affiliate_code" placeholder="Seo Affiliate Code"
+                                       ng-model="form.seo_affiliate_code"
+                                       required-message= "'Seo affiliate code can not be blank.'"
+                                       required>
+                                <div class="clear" style="clear:both;">&nbsp;</div>
+                                <input type="button" class="btn btn-primary" value="Generate" ng-click="generate_seo_code()"> <input type="button" class="btn btn-primary" value="Clear" ng-click="seo_code_clear()">
+
+
+                            </div>
+                                <div class="form-group">
+                                    <label>Service Affiliate Code</label>
+                                    <input type="text" class="form-control" name="service_affiliate_code" placeholder="Service Affiliate Code"
+                                           ng-model="form.service_affiliate_code"
+                                           required-message= "'Service affiliate code can not be blank.'"
+                                           required>
+                                    <div class="clear" style="clear:both;">&nbsp;</div>
+                                    <input type="button" class="btn btn-primary" value="Generate" ng-click="generate_service_code()"> <input type="button" class="btn btn-primary" value="Clear" ng-click="service_code_clear()">
+
+
+                                </div>-->
+                    </div>
+
+
+                            <div class="box-footer" style="background:none; height:auto; padding-bottom:0px; padding-top:0px;">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div><!-- /.box -->
+
+
+                    <div style="clear:both;"></div>
+                </div>
+
+            </div>   <!-- /.row -->
+        </div>
+    </section>
+
+
+</div>
+

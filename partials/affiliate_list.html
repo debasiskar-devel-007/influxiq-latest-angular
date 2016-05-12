@@ -1,0 +1,161 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Affiliate Manager
+        </h1>
+        <!--<ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Tables</a></li>
+            <li class="active">Data tables</li>
+        </ol>-->
+        <div class="newblock2">
+
+            <input type="text" name="search" ng-model="searchkey" class="search1" placeholder="Search Affiliate">
+            <a href="javascript:void(0)" class="addfrinderbtn"
+               ng-csv="getArray" filename="{{ filename }}.csv" field-separator="{{separator}}" decimal-separator="{{decimalSeparator}}"
+            >Export to CSV</a>
+            &nbsp;&nbsp;<a ui-sref="add-affiliate" class="addfrinderbtn downloadcsvbtn">Add Affiliate</a>
+            <div class="clear"></div>
+        </div>
+        <div class="clearfix"></div>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Affiliate List</h3>
+                    </div><!-- /.box-header -->
+                    <table id="example1" class="table table-bordered table-striped" ng-show="affiliatelist.length>0">
+                        <thead>
+                        <tr>
+                            <th><a ng-click="order('affiliate_name')" href="javascript:void(0);">Name</a>
+                                <span class="sortorder" ng-class="{reverse:reverse}" ng-show="predicate === 'affiliate_name'"></span>
+                            </th>
+                            <th><a ng-click="order('affiliate_email')" href="javascript:void(0);">Email</a>
+                                <span class="sortorder" ng-class="{reverse:reverse}" ng-show="predicate === 'affiliate_email'"></span>
+                            </th>
+                            <th><a ng-click="order('affiliate_date')" href="javascript:void(0);">Affiliate Date</a>
+                                <span class="sortorder" ng-class="{reverse:reverse}" ng-show="predicate === 'affiliate_date'"></span>
+                            </th>
+                            <th><a ng-click="order('product_affiliate_code')" href="javascript:void(0);">Product Affiliate Code</a>
+                                <span class="sortorder" ng-class="{reverse:reverse}" ng-show="predicate === 'product_affiliate_code'"></span>
+                            </th>
+ <!--                           <th><a ng-click="order('seo_affiliate_code')" href="javascript:void(0);">Seo Affiliate Code</a>
+                                <span class="sortorder" ng-class="{reverse:reverse}" ng-show="predicate === 'seo_affiliate_code'"></span>
+                            </th>
+                            <th><a ng-click="order('service_affiliate_code')" href="javascript:void(0);">Service Affiliate Code</a>
+                                <span class="sortorder" ng-class="{reverse:reverse}" ng-show="predicate === 'service_affiliate_code'"></span>
+                            </th>
+-->
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat=" item in  filterResult = (affiliatelist | filter:search) | startFrom:(currentPage-1)*perPage | limitTo:perPage | orderBy:predicate:reverse">
+                            <td>{{item.affiliate_name}}</td>
+                            <td>{{item.affiliate_email}}</td>
+                            <td>{{item.affiliate_date}}</td>
+                            <td> {{item.product_affiliate_code}}</td>
+<!--
+                            <td>{{item.seo_affiliate_code}}</td>
+                            <td>{{item.service_affiliate_code}}</td>
+-->
+
+                            <td><a ng-show="item.product_affiliate_code"href="javascript:void(0)" tooltip-placement="bottom" uib-tooltip="Get product affiliate url" ng-click="productaffiliatecode(item)">Get Product Affiliate URL</a><!--&nbsp;&nbsp;&nbsp;<a ng-show="item.seo_affiliate_code" href="javascript:void(0)" tooltip-placement="bottom" uib-tooltip="Get seo affiliate url" ng-click="seoaffiliatecode(item)">Get SEO Affiliate URL</a>&nbsp;&nbsp;&nbsp;<a ng-show="item.service_affiliate_code" href="javascript:void(0)" tooltip-placement="bottom" uib-tooltip="Get service affiliate url" ng-click="serviceaffiliatecode(item)">Get Service Affiliate URL</a>-->&nbsp;&nbsp;&nbsp;<a tooltip-placement="bottom" uib-tooltip="Click to edit affiliate" ui-sref="edit-affiliate({id:item.id})">Edit</a>&nbsp;&nbsp;&nbsp;<a tooltip-placement="bottom" uib-tooltip="Click to delete affiliate" href="javascript:void(0)" ng-click="delaffiliate(item)">Delete</a></td>
+                        </tr>
+
+                          </tbody>
+
+                    </table>
+                    <div ng-show="filterResult.length > perPage" class="paginationblock">
+                        <uib-pagination total-items="filterResult.length" ng-model="currentPage" items-per-page="perPage" max-size="4"></uib-pagination>
+                    </div>
+                    <div ng-if="affiliatelist.length == 0" class="callout callout-danger">
+                        <h4>Sorry</h4>
+
+                        <p>No affiliate exists in system right now !!.</p>
+                    </div>
+
+                </div><!-- /.box -->
+
+
+
+            </div>
+
+        </div>   <!-- /.row -->
+    </section><!-- /.content -->
+</div>
+
+<!--
+<script type="text/ng-template" id="affiliatedelconfirm.html">
+    <div >
+        <a ng-click="cancel()" class="shutter-close2 ng-scope" href="javascript:void(0)">X</a>
+        <h2 class="ng-scope">Are you sure you want to delete this account?</h2>
+        <div style="width:270px; margin:20px auto;" class="ng-scope">
+            <input type="button" ng-click="confirmaffiliatedelete()" class="subbtn" value="Confirm">
+            <input type="button" ng-click="cancel()" class="subbtn" value="Cancel">
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+</script>
+-->
+
+<script type="text/ng-template" id="affiliatedelconfirm.html">
+    <div class="confirm_delpopup" >
+        <a ng-click="cancel()" class="shutter-close2 ng-scope" href="javascript:void(0)"><img src="images/popup-Close.png"> </a>
+        <div class="clearfix"></div>
+        <h2 class="ng-scope">Are you sure you want to delete this affiliate?</h2>
+        <div class="confirm_delbtn ng-scope text-center">
+            <input type="button"  ng-click="confirmaffiliatedelete()" class="subbtn" value="Confirm">
+            <input type="button" ng-click="cancel()" class="subbtn" value="Cancel">
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="productaffiliate.html">
+    <div class="confirm_delpopup" >
+        <a ng-click="cancel()" class="shutter-close2 ng-scope" href="javascript:void(0)"><img src="images/popup-Close.png"> </a>
+        <div class="clearfix"></div>
+        <h2 class="ng-scope"><input id="url_product_affiliate" type="text" name="productcode"  value="{{productcode}}" ></h2>
+        <div class="confirm_delbtn text-center ng-scope">
+            <input type="button" ngclipboard data-clipboard-target="#url_product_affiliate"  class="subbtn" value="COPY TO CLIPBOARD">
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</script>
+<script type="text/ng-template" id="seoaffiliate.html">
+    <div class="confirm_delpopup" >
+        <a ng-click="cancel()" class="shutter-close2 ng-scope" href="javascript:void(0)"><img src="images/popup-Close.png"> </a>
+        <div class="clearfix"></div>
+        <h2 class="ng-scope"><input id="url_seo_affiliate" type="text" name="seocode"  value="{{seocode}}" ></h2>
+            <div class="confirm_delbtn text-center ng-scope">
+                <input type="button" ngclipboard data-clipboard-target="#url_seo_affiliate"  class="subbtn" value="COPY TO CLIPBOARD">
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+    </div>
+</script>
+<script type="text/ng-template" id="serviceaffiliate.html">
+    <div class="confirm_delpopup" >
+        <a ng-click="cancel()" class="shutter-close2 ng-scope" href="javascript:void(0)"><img src="images/popup-Close.png"> </a>
+        <div class="clearfix"></div>
+        <h2 class="ng-scope"><input id="url_service_affiliate" type="text" name="servicecode"  value="{{servicecode}}" ></h2>
+            <div class="confirm_delbtn text-center ng-scope">
+                <input type="button" ngclipboard data-clipboard-target="#url_service_affiliate"  class="subbtn" value="COPY TO CLIPBOARD">
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+    </div>
+</script>

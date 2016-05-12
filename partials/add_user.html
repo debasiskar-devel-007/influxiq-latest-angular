@@ -1,0 +1,157 @@
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Admin Manager
+
+        </h1>
+        <!--<ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Forms</a></li>
+            <li class="active">General Elements</li>
+        </ol>-->
+    </section>
+
+
+
+
+
+    <section class="content">
+        <div class="row">
+
+
+
+            <!-- left column -->
+            <div class="col-md-12">
+
+                <!-- general form elements -->
+                <div class="box box-primary" style="overflow:hidden; padding-bottom:40px;">
+
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Add Admin</h3>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+
+                    <div class="formsection">
+                        <form role="form" angular-validator-submit="addusersubmit()" name="adduserform" novalidate angular-validator>
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label >Email address</label>
+                                    <input type="email" class="form-control" placeholder="Enter email" name="email"
+                                    ng-model="form.email"
+                                     required-message="'Email can not be blank.'"
+                                      invalid-message="'Email not valid'"
+                                      required
+                                    >
+                                    <!-- <span class="errormsg">erroe msg</span>-->
+                                </div>
+
+                                <div class="form-group">
+                                    <label >Password</label>
+                                    <input type="password" class="form-control"  placeholder="Password" name="password"
+                                    ng-model="form.password"
+                                     required-message="'Password can not be blank.'"
+                                           required
+                                    >
+                                    <!-- <span class="errormsg">erroe msg</span>-->
+                                </div>
+                                <div class="form-group">
+                                    <label>Confirm Password</label>
+                                    <input type="password" class="form-control" name="con_password" placeholder="Confirm Password"
+                                     ng-model="form.con_password"
+                                           validator = "form.password === form.con_password"
+                                           invalid-message="'Confirm password do not match'"
+                                    >
+                                </div>
+                                <div class="form-group">
+                                    <label>First Name</label>
+                                    <input type="text" class="form-control" name="fname" placeholder="First Name"
+
+                                    ng-model="form.fname"
+                                           required-message= "'First name can not be blank.'"
+
+                                           required
+                                           >
+                                </div>
+                                <div class="form-group">
+                                    <label>Last Name</label>
+                                    <input type="text" class="form-control" name="lname" placeholder="Last Name"
+                                     ng-model="form.lname"
+                                     required-message="'Last name can not be blank.'"
+                                      required
+                                           >
+                                </div>
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <textarea class="form-control" rows="3" name="address" placeholder="Address"
+                                     ng-model="form.address"
+                                     required-message="'Address can not be blank.'"
+                                              required>
+                                    </textarea>
+                                </div>
+
+
+                                <div class="form-group">
+
+
+                                    <label>Phone Number</label>
+                                    <input type="text" class="form-control" placeholder="Phone Number" name="phone_no"
+                                    ng-model="form.phone_no"
+                                    required-message="'Phone number can not be blank.'"
+                                    required
+                                    >
+                                    <!-- <span class="errormsg">erroe msg</span>-->
+                                </div>
+
+                                <div class="form-group">
+                                    <label >User Role:</label>
+                                    <select   class="form-control input1 selectboxnew"  name="user_role"
+                                            ng-model = "form.user_role"
+                                             required-message="'Select role role.'"
+                                            required>
+                                        <option value="">Select Role</option>
+                                        <option value="4">Admin</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label >Select Gender</label>
+
+                                    <div class="checkbox">
+
+                                        <label>
+                                            <input type="radio"  name="gender" value="Male" ng-model="form.gender"
+                                                   validator = "genderValidator() === true"
+                                                   invalid-message = "genderValidator(form.gender)">
+                                            <span style="font-size:13px;">Male</span>
+                                        </label>
+
+
+                                        <label>
+                                            <input type="radio"  name="gender" value="Female" ng-model="form.gender"
+                                                 validator = "genderValidator() === true"
+                                                   invalid-message = "genderValidator(form.gender)">
+                                            <span style="font-size:13px;">Female</span>
+                                        </label>
+                                   </div>
+                                    <span class="clearfix validationMessage errormsg" ng-show="gender_error"> Please select atleast one option !!</span>
+                                </div>
+
+                              </div><!-- /.box-body -->
+
+                            <div class="box-footer" style="background:none; height:auto; padding-bottom:0px; padding-top:0px;">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div><!-- /.box -->
+
+
+                    <div style="clear:both;"></div>
+                </div>
+
+            </div>   <!-- /.row -->
+        </div>
+    </section>
+
+
+</div>
+

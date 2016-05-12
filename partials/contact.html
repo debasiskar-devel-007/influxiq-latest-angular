@@ -1,0 +1,84 @@
+<div class="content-wrapper">
+
+
+
+
+
+    <section class="content">
+        <div class="row">
+
+
+
+            <!-- left column -->
+            <div class="col-md-12">
+
+                <!-- general form elements -->
+                <div class="box box-primary" style="overflow:hidden; padding-bottom:40px;">
+
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Contact Us</h3>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+
+                    <div class="formsection">
+                        <form  angular-validator-submit="contactsubmit()" name="contactform" novalidate angular-validator>
+                            <div class="box-body">
+                                <div class="form-group">
+
+                                    <input  type="text" class="form-control" name="fullname" placeholder="Full Name"
+
+                                           ng-model="form.fullname"
+                                           required-message= "'Full name can not be blank.'"
+
+                                           required
+                                    >
+                                </div>
+                                <div class="form-group">
+
+                                    <input type="email" class="form-control" placeholder="Email Address" name="email"
+                                    ng-model="form.email"
+                                     required-message="'Email can not be blank.'"
+                                      invalid-message="'Email not valid'"
+                                      required
+                                    >
+                                    <!-- <span class="errormsg">erroe msg</span>-->
+                                </div>
+
+                                <div class="form-group">
+
+                                    <input type="text" class="form-control"  placeholder="Phone Number" name="phone_no"
+                                    ng-model="form.phone_no"
+                                     required-message="'Phone Number can not be blank.'"
+                                           required
+                                    >
+                                    <!-- <span class="errormsg">erroe msg</span>-->
+                                </div>
+                                 <div class="form-group">
+
+                                    <textarea class="form-control" rows="3" name="message" placeholder="Message"
+                                     ng-model="form.message"
+                                     required-message="'Message can not be blank.'"
+                                              required>
+                                    </textarea>
+                                </div>
+
+
+                              </div><!-- /.box-body -->
+
+                            <div class="box-footer" style="background:none; height:auto; padding-bottom:0px; padding-top:0px;">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div><!-- /.box -->
+
+
+                    <div style="clear:both;"></div>
+                </div>
+
+            </div>   <!-- /.row -->
+        </div>
+    </section>
+
+
+</div>
+

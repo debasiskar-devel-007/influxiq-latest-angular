@@ -1,0 +1,192 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannercontain">
+            <img src="images/web_platform_banner.png">
+            <!--<h2>WEB <span>DESIGN</span></h2>
+            <div class="container">
+                <p>Maecenas vitae nunc eget quam pellentesque cursus eget et lacus. Vestibulum sollicitudin nisi nec pulvinar venenatis. Vivamus ornare, urna eget pulvinar eleifend, nibh lorem elementum mauris, in semper lectus elit ut ex.</p>
+            </div>
+            <div class="divider-inner"></div>-->
+
+        </div>
+    </div>
+</div>
+<!--
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 blockcore">
+            <h2>WEB <span>PLATFORMS</span></h2>
+            <div class="container">
+                <p>Maecenas vitae nunc eget quam pellentesque cursus eget et lacus. Vestibulum sollicitudin nisi nec pulvinar venenatis. Vivamus ornare, urna eget pulvinar eleifend, nibh lorem elementum mauris, in semper lectus elit ut ex.</p>
+            </div>
+            <div class="divider-inner"></div>
+
+        </div>
+    </div>
+</div>
+&lt;!&ndash;bannercontain end &ndash;&gt;
+
+
+&lt;!&ndash;bannercontain Start &ndash;&gt;
+<div class="container-fluid">	
+    	<div class="row">  
+         	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 content_writing_top_devider"></div>  	
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">   
+                    <div class="content_writing_top_banner_grd">  
+                     	<div class="content_writing_top_banner_webplat">
+                            <div class="row">    
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
+                                    <div class="pd-banner">     
+                                        <div class="content_writing_bannertext">
+                                            <h4>Upgrade Your</h4>
+                                            <h2>WEB PLATFORM</h2>
+                                            <h3>TO THE NEXT LEVEL</h3>   
+                                            <p>If you do not see what you are after here please get in touch. After writing 2 million lines of code over the past 15 years we have a wealth of software to work with.</p>
+                                            <div class="divider-inner-blue"></div>              
+                                        </div>
+                                    </div> 
+                                </div>                                                                                                           
+                            </div>
+                       </div>
+                    </div>
+                </div> 
+        	</div>
+     	</div>
+-->
+</div>
+
+
+<div class="container shoptabdiv">
+
+        <ul ng-show="productnamelist.length>0">
+            <li ng-repeat="item1 in productnamelist" ng-style="{'background-color': '{{item1.colour}}'}"><a href="#" class="product_listt"  productid="{{item1.id}}"><img src="{{item1.icon_url}}">{{item1.product_short_name}}</a></li>
+
+            <!--
+                    <li class="t1"><a href="#"><img src="images/t1.png">Marketing Web</a></li>
+                    <li class="t2"><a href="#"><img src="images/t2.png">Shop Deluxe</a></li>
+                    <li class="t3"><a href="#"><img src="images/t3.png">eCommerce Deluxe</a></li>
+                    <li class="t4"><a href="#"><img src="images/t4.png">Market Launch</a></li>
+                    <li class="t5"><a href="#"><img src="images/t5.png">360 Affilaite</a></li>
+            -->
+    </ul>
+    <div class="clearfix"></div>
+    <div class="greyline"></div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="container">
+                <div class="prod-blockleft">
+                    <h2>{{productdetails.product_name}}</h2>
+                    <h3>Platform Cost : ${{productdetails.product_price}} | Monthly Hosting : ${{productdetails.monthly_hosting}}</h3>
+                    <p ng-bind-html="trustAsHtml(productdetails.product_description)">{{productdetails.product_description}}</p>
+
+                    <ul ng-if="productdetails.product_feature">
+                        <li ng-repeat="item in productdetails.product_feature">{{item}}</li>
+                    </ul>                    
+                </div>
+
+                <div class="prod-blockright">
+                    <img alt="#" src="{{productdetails.font_image_url}}">
+                    
+                    <div class="butdiv">
+                        <div class="butdivleft">
+                            <a href="javascript:void(0);" ng-click="pop_pen(productdetails)" class="butdivleft-right">ADD TO CONTRACT</a>
+                           <!-- <a ui-sref="web-platform-details({id:productitem.id})" class="butdivleft-right">VIEW DETAILS</a>-->
+                        </div>
+                        <!--<a href="#" class="butdivright scrollToTop">Back to top <span>?</span></a>-->
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="greyline"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<script type="text/ng-template" id="product.html">
+
+    <div class="confirm_delpopup" >
+        <a ng-click="cancel()" class="shutter-close2 ng-scope closebtn1" href="javascript:void(0)"><img class="ab-close" src="images/popup-Close-white.png"> </a>
+        <div class="clearfix"></div>
+        <div class="confirm_delbtn ng-scope" id="product_confirm_delbtn">
+            <div class="modalorangebar_new">Select Your Next Service</div>
+            <div class="modal-body">
+                <div style="color: #f00;" ng-show="showselerror"> Please Select One</div>
+				<div class="modal-body-inner" >
+                <div class="checkbox checkclass text-center" ng-repeat="item3 in categorylist">
+					
+                    <label class="prolabel" >
+						<img>
+                        <input  ng-change="selectradio(item3.id)"  type="radio" value="{{item3.id}}"  name="dfgdf"  ng-model="selectedcat"
+                        > <!--validator = "platformValidator() === true"
+                                                       invalid-message = "platformValidator(form.platform_id)"-->
+                        <span style="font-size:13px;">{{item3.category_name}}</span>
+                    </label>
+
+</div>
+
+                </div>
+                <div class="clearfix"></div>
+				<div class="btnmodelorange">
+                <a href="javascript:void(0);" ng-click="send774()" class="probutton">Go</a>
+                <!-- <button ng-disabled="!cat_id" ng-click="send(product)" class="probutton">Go</button>-->
+				</div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+
+    <!--
+        <div id="contactowmodal" class="modal fade" role="dialog">
+
+            <div class="modal-dialog">
+
+
+
+                &lt;!&ndash; Modal content&ndash;&gt;
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                        <h4 class="modal-title">Thank You For Contacting  Influxiq </h4>
+
+                    </div>
+
+                    <div class="modal-body">
+
+
+
+                        <h2><a href="/index"><img  alt="#" src="images/logoold.png"></a></h2>
+
+                        <p>A Influxiq Team Member Will Get Back to You In 24 Hours or less</p>
+
+                    </div>
+
+
+
+                </div>
+
+    -->
+
+
+    </div>
+
+    </div>
+</script>
+
